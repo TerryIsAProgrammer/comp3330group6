@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_main"
+        android:title="Main Page"
+        android:icon="@mipmap/ic_home_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_search"
+        android:title="Search"
+        android:icon="@mipmap/ic_search_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@mipmap/ic_person_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_my_events"
+        android:title="My Events"
+        android:icon="@mipmap/ic_event_black_24dp"/>
+
+    <item
+        android:id="@+id/nav_log_out"
+        android:title="Logout" />
+
+</menu>
