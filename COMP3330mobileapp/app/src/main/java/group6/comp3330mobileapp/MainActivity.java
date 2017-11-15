@@ -19,7 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
     private static final String REQUIRED = "Required";
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 submitPost(view);
                 //Intent myIntent = new Intent(view.getContext(), RegisterMainPage.class);
-                // startActivity(myIntent);
+                //startActivity(myIntent);
             }
         });
     }
@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 //Toast.makeText(MainActivity.this, , Toast.LENGTH_SHORT).show();
                                 int userKey = Integer.parseInt(thisSnapshot.getKey());
+
+                                GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                                gv.setUserID(userKey);
 
                                 Intent myIntent = new Intent(view.getContext(), HomePage.class);
                                 myIntent.putExtra("userKey", userKey);

@@ -47,8 +47,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         mDatabase = FirebaseDatabase.getInstance().getReference();
         title = (TextView) findViewById(R.id.TitleView);
 
-        Bundle extras = getIntent().getExtras();
-        userKey = extras.getInt("userKey");
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        int userKey = gv.getUserID();
 
         Query query = mDatabase.child("users").orderByChild("userID").equalTo(userKey);
         query.addListenerForSingleValueEvent(new ValueEventListener() {

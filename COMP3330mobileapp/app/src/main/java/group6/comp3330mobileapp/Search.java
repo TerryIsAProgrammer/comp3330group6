@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -324,6 +325,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
                             }
                         }
                         Log.println(Log.DEBUG,"a","a");
+                        //Toast.makeText(Search.this,"size of eventarrr: "+eventArr.size() , Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
