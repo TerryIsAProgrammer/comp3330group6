@@ -373,6 +373,10 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
                 Intent myIntent_search = new Intent(this,Search.class);
                 startActivity(myIntent_search);
                 break;
+            case R.id.nav_log_out:
+                Intent myIntent_logout = new Intent(this,MainActivity.class);
+                startActivity(myIntent_logout);
+                break;
         }
         //close navigation drawer
         mDrawerLayout.closeDrawers();

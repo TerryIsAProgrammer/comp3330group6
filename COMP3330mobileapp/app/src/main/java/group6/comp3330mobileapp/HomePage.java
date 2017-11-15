@@ -24,7 +24,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
-        setNavigationViewListner();
+        setNavigationViewListener();
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
@@ -75,13 +75,17 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 Intent myIntent_search = new Intent(this,Search.class);
                 startActivity(myIntent_search);
                 break;
+            case R.id.nav_log_out:
+                Intent myIntent_logout = new Intent(this,MainActivity.class);
+                startActivity(myIntent_logout);
+                break;
         }
         //close navigation drawer
         mDrawerLayout.closeDrawers();
         return true;
     }
 
-    private void setNavigationViewListner() {
+    private void setNavigationViewListener() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setNavigationItemSelectedListener(this);
 
