@@ -5,18 +5,13 @@
     android:layout_height = "match_parent"
     tools:context = ".MainActivity">
 
-    <TextView android:text = "Activator" android:layout_width="wrap_content"
-        android:layout_height = "wrap_content"
-        android:id = "@+id/textview22"
-        android:textSize = "35dp"
-        android:layout_alignParentTop = "true"
-        android:layout_centerHorizontal = "true" />
 
     <TextView
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:textSize = "25dp"
         android:text = "Please Log in here"
+        android:layout_marginTop = "30dp"
         android:id = "@+id/textView"
         android:layout_below="@+id/textview"
         android:layout_centerHorizontal="true" />
@@ -27,12 +22,13 @@
         android:id = "@+id/text_username"
         android:hint = "Enter Name"
         android:focusable = "true"
-        android:layout_marginTop = "25dp"
+        android:layout_marginTop = "30dp"
         android:layout_below="@+id/imageView"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignRight="@+id/text_password"
+        android:layout_alignEnd="@+id/text_password"
+        android:text="cw"/>
 
     <ImageView
         android:layout_width="150dp"
@@ -41,7 +37,8 @@
         android:src="@drawable/logo"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="20dp"
+        android:text="a1234"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,7 +47,7 @@
         android:ems="10"
         android:id="@+id/text_password"
         android:hint="Password"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/text_username"
         android:layout_centerHorizontal="true" />
 
