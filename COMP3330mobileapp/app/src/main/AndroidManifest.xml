@@ -17,14 +17,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterMainPage"></activity>
-        <activity android:name=".RegisterStudent"></activity>
-        <activity android:name=".RegisterAssociation"></activity>
-        <activity android:name=".HomePage"></activity>
+        <activity android:name=".RegisterMainPage" />
+        <activity android:name=".RegisterStudent" />
+        <activity android:name=".RegisterAssociation" />
+        <activity android:name=".HomePage" />
         <activity
             android:name=".Search"
             android:label="Advanced Search"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ViewEventInd" >
+        </activity>
+        <activity android:name=".CreateEventAsso" />
+        <activity android:name=".ViewEventAsso"></activity>
     </application>
 
 </manifest>
