@@ -1,8 +1,18 @@
 apply plugin: 'com.android.application'
 
+buildscript {
+    repositories {
+        mavenCentral() // or jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'   //last version Jan 2016
+        classpath 'com.google.gms:google-services:3.1.1'
+    }
+}
+
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "group6.comp3330mobileapp"
         minSdkVersion 15
@@ -10,6 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -41,6 +52,7 @@ allprojects {
         }
     }
 }
+
 
 
 apply plugin: 'com.google.gms.google-services'
