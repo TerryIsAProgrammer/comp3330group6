@@ -34,10 +34,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Search extends BaseActivity{
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+    //private DrawerLayout mDrawerLayout;
+    //private ActionBarDrawerToggle mToggle;
 
     Calendar myCalendar = Calendar.getInstance();
 
@@ -82,7 +82,7 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        setNavigationViewListner();
+        setNavigationViewListener();
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
@@ -339,57 +339,6 @@ public class Search extends AppCompatActivity implements NavigationView.OnNaviga
         return null;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                Intent myIntent = new Intent(this,Search.class);
-                startActivity(myIntent);
-                break;
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        switch (item.getItemId()) {
-
-            case R.id.nav_main:
-                Intent myIntent_main = new Intent(this,HomePage.class);
-                startActivity(myIntent_main);
-                break;
-            case R.id.nav_search:
-                Intent myIntent_search = new Intent(this,Search.class);
-                startActivity(myIntent_search);
-                break;
-            case R.id.nav_log_out:
-                Intent myIntent_logout = new Intent(this,MainActivity.class);
-                startActivity(myIntent_logout);
-                break;
-        }
-        //close navigation drawer
-        mDrawerLayout.closeDrawers();
-        return true;
-    }
-
-    private void setNavigationViewListner() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-        navigationView.setNavigationItemSelectedListener(this);
-
-    }
 
 }
 

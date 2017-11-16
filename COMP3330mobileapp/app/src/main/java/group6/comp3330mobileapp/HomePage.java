@@ -23,10 +23,10 @@ import com.google.firebase.database.ValueEventListener;
  * Created by Terry on 11/6/2017.
  */
 
-public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomePage extends BaseActivity{
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+    //private DrawerLayout mDrawerLayout;
+    //private ActionBarDrawerToggle mToggle;
     private DatabaseReference mDatabase;
     TextView title ;
     private int userKey;
@@ -74,63 +74,4 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                Intent myIntent = new Intent(this,Search.class);
-                startActivity(myIntent);
-                break;
-        }
-
-
-        if (mToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        switch (item.getItemId()) {
-
-            case R.id.nav_main:
-                Intent myIntent_main = new Intent(this,HomePage.class);
-                startActivity(myIntent_main);
-                break;
-            case R.id.nav_search:
-                Intent myIntent_search = new Intent(this,Search.class);
-                startActivity(myIntent_search);
-                break;
-            case R.id.nav_log_out:
-                Intent myIntent_logout = new Intent(this,MainActivity.class);
-                startActivity(myIntent_logout);
-                break;
-        }
-        //close navigation drawer
-        mDrawerLayout.closeDrawers();
-        return true;
-    }
-
-    private void setNavigationViewListener() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-        navigationView.setNavigationItemSelectedListener(this);
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        mDrawerLayout.openDrawer(GravityCompat.START);
-    }
 }

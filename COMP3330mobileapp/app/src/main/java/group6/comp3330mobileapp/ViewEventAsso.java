@@ -1,6 +1,8 @@
 package group6.comp3330mobileapp;
 
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ViewEventAsso extends AppCompatActivity {
+public class ViewEventAsso extends BaseActivity {
 
     ImageView posterA;
     TextView view;
@@ -42,6 +44,13 @@ public class ViewEventAsso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_event_a);
+
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         posterA = (ImageView) findViewById(R.id.posterA);
         view = (TextView) findViewById(R.id.view);
