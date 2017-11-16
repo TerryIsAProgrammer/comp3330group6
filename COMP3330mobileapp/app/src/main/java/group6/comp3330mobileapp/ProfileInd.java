@@ -1,0 +1,106 @@
+package group6.comp3330mobileapp;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+public class ProfileInd extends AppCompatActivity {
+
+    ImageView icon;
+    TextView userNameId;
+    TextView name;
+    TextView gender;
+    TextView university;
+    TextView degree;
+    TextView uid;
+    TextView phone;
+    TextView email;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
+    String key = "001";
+    StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.profile_ind);
+
+        icon = (ImageView) findViewById(R.id.icon);
+        userNameId = (TextView) findViewById(R.id.userNameId);
+        name = (TextView) findViewById(R.id.name);
+        gender = (TextView) findViewById(R.id.gender);
+        university = (TextView) findViewById(R.id.university);
+        degree = (TextView) findViewById(R.id.degree);
+        uid = (TextView) findViewById(R.id.uid);
+        phone = (TextView) findViewById(R.id.phone);
+        email = (TextView) findViewById(R.id.email);
+
+        //for loading event inforamtion
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                //String value = dataSnapshot.getValue(String.class);
+                //Log.d(TAG, "Value is: " + value);
+
+
+                //String iconI = dataSnapshot.child("users").child(key).child("icon").getValue().toString();
+                String userName = dataSnapshot.child("users").child(key).child("username").getValue().toString();
+                String userId = dataSnapshot.child("users").child(key).child("userID").getValue().toString();
+                String nameI = dataSnapshot.child("users").child(key).child("name").getValue().toString();
+                String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
+                String universityI = dataSnapshot.child("users").child(key).child("university").getValue().toString();
+                String degreeI = dataSnapshot.child("users").child(key).child("degree").getValue().toString();
+                String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
+                String phoneI = dataSnapshot.child("users").child(key).child("tel_no").getValue().toString();
+                String emailI = dataSnapshot.child("users").child(key).child("email").getValue().toString();
+
+                Log.v("E-Value", "userName is: " + userName);
+                Log.v("E-Value", "userId is: " + userId);
+                Log.v("E-Value", "name is: " + nameI);
+                Log.v("E-Value", "gender is: " + genderI);
+                Log.v("E-Value", "university is: " + universityI);
+                Log.v("E-Value", "degree is: " + degreeI);
+                Log.v("E-Value", "uid is: " + uidI);
+                Log.v("E-Value", "phone is: " + phoneI);
+                Log.v("E-Value", "email is: " + emailI);
+
+                userNameId.setText("Username : " + userName + "\n" + "User Id : " + userId);
+                name.setText(nameI);
+                gender.setText(genderI);
+                university.setText(universityI);
+                degree.setText(degreeI);
+                uid.setText(uidI);
+                phone.setText(phoneI);
+                email.setText(emailI);
+
+                //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
+                StorageReference pathReference = mStorageRef.child("icon/1.jpg");
+                //for loading poster
+                Glide.with(ProfileInd.this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(icon);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                //Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+    }
+}

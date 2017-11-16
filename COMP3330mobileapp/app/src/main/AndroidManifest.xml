@@ -25,10 +25,12 @@
             android:name=".Search"
             android:label="Advanced Search"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ViewEventInd" >
-        </activity>
+        <activity android:name=".ViewEventInd" />
         <activity android:name=".CreateEventAsso" />
-        <activity android:name=".ViewEventAsso"></activity>
+        <activity android:name=".ViewEventAsso" />
+        <activity android:name=".ProfileAsso" />
+        <activity android:name=".ProfileInd">
+        </activity>
     </application>
 
 </manifest>
