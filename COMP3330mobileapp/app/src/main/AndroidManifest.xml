@@ -29,8 +29,9 @@
         <activity android:name=".CreateEventAsso" />
         <activity android:name=".ViewEventAsso" />
         <activity android:name=".ProfileAsso" />
-        <activity android:name=".ProfileInd">
-        </activity>
+        <activity android:name=".ProfileInd" />
+        <activity android:name=".EditProfileInd"/>
+        <activity android:name=".EditProfileAsso"></activity>
     </application>
 
 </manifest>
