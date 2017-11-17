@@ -204,7 +204,6 @@ public class CreateEventAsso extends BaseActivity {
                         int view = 0;
 
 
-
                         Date dateTimeCombine = null;
                         String startDT = date + " " + time;
                         Log.v("E-Value", "startDT is: " + startDT);
