@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -80,7 +82,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-public class CreateEventAsso extends AppCompatActivity {
+public class CreateEventAsso extends BaseActivity {
 
     EditText eventName;
     EditText eventDate;
@@ -136,6 +138,13 @@ public class CreateEventAsso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_event_a);
+
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         eventName = (EditText) findViewById(R.id.eventName);
         eventDate = (EditText) findViewById(R.id.evnetDate);
@@ -193,7 +202,6 @@ public class CreateEventAsso extends AppCompatActivity {
                         String uniStr = unis[spnrUni.getSelectedItemPosition()];
                         String typeStr = types[spnrType.getSelectedItemPosition()];
                         int view = 0;
-
 
 
                         Date dateTimeCombine = null;

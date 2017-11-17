@@ -3,6 +3,8 @@ package group6.comp3330mobileapp;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -34,7 +37,7 @@ import static android.R.attr.content;
 import static android.R.attr.contextUri;
 import static android.R.attr.value;
 
-public class ViewEventInd extends AppCompatActivity {
+public class ViewEventInd extends BaseActivity {
 
     ImageView posterI;
     TextView viewEventNameI;
@@ -44,6 +47,8 @@ public class ViewEventInd extends AppCompatActivity {
     TextView viewContactNameI;
     TextView viewContactPhoneI;
     TextView viewDescriptionI;
+
+    Button buttonJoin;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -57,6 +62,13 @@ public class ViewEventInd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_event_i);
 
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         posterI = (ImageView) findViewById(R.id.posterI);
         viewEventNameI = (TextView) findViewById(R.id.viewEventNameI);
         viewDateI = (TextView) findViewById(R.id.viewDateI);
@@ -65,6 +77,22 @@ public class ViewEventInd extends AppCompatActivity {
         viewContactNameI = (TextView) findViewById(R.id.viewContactNameI);
         viewContactPhoneI = (TextView) findViewById(R.id.viewContactPhoneI);
         viewDescriptionI = (TextView) findViewById(R.id.viewDescriptionI);
+
+        buttonJoin = findViewById(R.id.buttonJoin);
+
+        buttonJoin.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                int userKey = gv.getUserID();
+                String userKeyStringString = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+
+                myRef.child("participates").child(key).child(userKeyStringString).setValue(true);
+                Toast.makeText(ViewEventInd.this,"Activity Joined!" , Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         //for loading event inforamtion

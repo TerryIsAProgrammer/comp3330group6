@@ -1,3 +1,10 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context = ".Home"
+    android:id="@+id/drawerLayout">
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical" >
@@ -28,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Event Name" />
+                android:hint="View Event Name"
+                android:textSize="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -46,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Date"/>
+                android:hint="View Date"
+                android:textSize="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Time" />
+                android:hint="View Time"
+                android:textSize="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -82,7 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Location" />
+                android:hint="View Location"
+                android:textSize="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -100,14 +111,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Contact Name" />
+                android:hint="View Contact Name"
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/viewContactPhoneI"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Contact Phone" />
+                android:hint="View Contact Phone"
+                android:textSize="20dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -125,10 +138,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="View Description"/>
+                android:hint="View Description"
+                android:textSize="20dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonJoin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Join Now!" />
 
         </LinearLayout>
 
     </LinearLayout>
 
 </ScrollView>
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/navigation_menu"
+        android:id="@+id/navigation_menu"
+        android:layout_gravity="start">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

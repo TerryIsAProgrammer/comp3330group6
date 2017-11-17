@@ -1,5 +1,7 @@
 package group6.comp3330mobileapp;
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ProfileAsso extends AppCompatActivity {
+public class ProfileAsso extends BaseActivity {
 
     ImageView icon;
     TextView userNameId;
@@ -32,7 +34,7 @@ public class ProfileAsso extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
-    String key = "003";
+    String key = null;
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
 
@@ -40,6 +42,17 @@ public class ProfileAsso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_asso);
+
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        int userKey = gv.getUserID();
+        key = String.format(java.util.Locale.getDefault(),"%03d",userKey);
 
         icon = (ImageView) findViewById(R.id.icon);
         userNameId = (TextView) findViewById(R.id.userNameId);
@@ -74,6 +87,11 @@ public class ProfileAsso extends AppCompatActivity {
                 //String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
                 String phoneA = dataSnapshot.child("users").child(key).child("tel_no").getValue().toString();
                 String emailA = dataSnapshot.child("users").child(key).child("email").getValue().toString();
+                String iconA = dataSnapshot.child("users").child(key).child("icon").getValue().toString();
+
+                if (iconA == null || iconA.isEmpty()){
+                    iconA = "icon/0.jpg";
+                }
 
                 Log.v("E-Value", "userName is: " + userName);
                 Log.v("E-Value", "userId is: " + userId);
@@ -96,7 +114,7 @@ public class ProfileAsso extends AppCompatActivity {
                 email.setText(emailA);
 
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
-                StorageReference pathReference = mStorageRef.child("icon/3.jpg");
+                StorageReference pathReference = mStorageRef.child(iconA);
                 //for loading poster
                 Glide.with(ProfileAsso.this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(icon);
             }

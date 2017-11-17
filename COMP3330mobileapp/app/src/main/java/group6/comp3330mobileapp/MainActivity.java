@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity{
                     String passWord = inputPw.getText().toString();
                     for (DataSnapshot thisSnapshot: dataSnapshot.getChildren()) {
                         String dbPassword = (String)thisSnapshot.child("password").getValue();
+
                         if (passWord.length()==dbPassword.length()){
 
                             int index = passWord.indexOf(dbPassword);
@@ -92,14 +93,17 @@ public class MainActivity extends AppCompatActivity{
 
                                 //Toast.makeText(MainActivity.this, , Toast.LENGTH_SHORT).show();
                                 int userKey = Integer.parseInt(thisSnapshot.getKey());
+                                String dbIdentity = (String)thisSnapshot.child("identity").getValue();
 
                                 GlobalVariable gv = (GlobalVariable)getApplicationContext();
                                 gv.setUserID(userKey);
+                                gv.setIdentity(dbIdentity);
 
                                 Intent myIntent = new Intent(view.getContext(), HomePage.class);
                                 myIntent.putExtra("userKey", userKey);
                                 try {
                                     startActivity(myIntent);
+                                    finish();
                                 }
                                 catch(android.content.ActivityNotFoundException e) {
                                 }

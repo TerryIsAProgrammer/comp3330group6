@@ -1,5 +1,7 @@
 package group6.comp3330mobileapp;
 
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ProfileInd extends AppCompatActivity {
+public class ProfileInd extends BaseActivity {
 
     ImageView icon;
     TextView userNameId;
@@ -30,13 +32,24 @@ public class ProfileInd extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
-    String key = "001";
+    String key = null;
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_ind);
+
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        int userKey = gv.getUserID();
+        key = String.format(java.util.Locale.getDefault(),"%03d",userKey);
 
         icon = (ImageView) findViewById(R.id.icon);
         userNameId = (TextView) findViewById(R.id.userNameId);
@@ -69,6 +82,11 @@ public class ProfileInd extends AppCompatActivity {
                 String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
                 String phoneI = dataSnapshot.child("users").child(key).child("tel_no").getValue().toString();
                 String emailI = dataSnapshot.child("users").child(key).child("email").getValue().toString();
+                String iconI = dataSnapshot.child("users").child(key).child("icon").getValue().toString();
+
+                if (iconI == null || iconI.isEmpty()){
+                    iconI = "icon/0.jpg";
+                }
 
                 Log.v("E-Value", "userName is: " + userName);
                 Log.v("E-Value", "userId is: " + userId);
@@ -90,7 +108,7 @@ public class ProfileInd extends AppCompatActivity {
                 email.setText(emailI);
 
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
-                StorageReference pathReference = mStorageRef.child("icon/1.jpg");
+                StorageReference pathReference = mStorageRef.child(iconI);
                 //for loading poster
                 Glide.with(ProfileInd.this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(icon);
             }
