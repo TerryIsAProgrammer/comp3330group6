@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".RegisterMainPage" />
         <activity android:name=".RegisterStudent" />
         <activity android:name=".RegisterAssociation" />
@@ -32,8 +30,9 @@
         <activity android:name=".ViewEventAsso" />
         <activity android:name=".ProfileAsso" />
         <activity android:name=".ProfileInd" />
-        <activity android:name=".EditProfileInd"/>
-        <activity android:name=".EditProfileAsso"></activity>
+        <activity android:name=".EditProfileInd" />
+        <activity android:name=".EditProfileAsso" />
+        <activity android:name=".Comment"></activity>
     </application>
 
 </manifest>
