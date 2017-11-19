@@ -153,12 +153,31 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/addCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="Add Calendar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="horizontal">
+
+            <Button
                 android:id="@+id/buttonJoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Join Now!" />
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

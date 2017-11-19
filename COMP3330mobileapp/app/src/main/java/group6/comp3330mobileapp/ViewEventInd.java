@@ -1,6 +1,8 @@
 package group6.comp3330mobileapp;
 
 
+import android.content.Intent;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
@@ -49,6 +51,7 @@ public class ViewEventInd extends BaseActivity {
     TextView viewDescriptionI;
 
     Button buttonJoin;
+    Button addCalendar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -79,21 +82,96 @@ public class ViewEventInd extends BaseActivity {
         viewDescriptionI = (TextView) findViewById(R.id.viewDescriptionI);
 
         buttonJoin = findViewById(R.id.buttonJoin);
+        addCalendar = findViewById(R.id.addCalendar);
 
         buttonJoin.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v){
-                GlobalVariable gv = (GlobalVariable)getApplicationContext();
-                int userKey = gv.getUserID();
-                String userKeyStringString = String.format(java.util.Locale.getDefault(),"%03d",userKey);
 
-                myRef.child("participates").child(key).child(userKeyStringString).setValue(true);
-                Toast.makeText(ViewEventInd.this,"Activity Joined!" , Toast.LENGTH_SHORT).show();
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                        int userKey = gv.getUserID();
+                        String userKeyStringString = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+                        if (!dataSnapshot.child("participates").child(key).hasChild(userKeyStringString)) {
+                            // run some code
+                            myRef.child("participates").child(key).child(userKeyStringString).setValue(true);
+                            Toast.makeText(ViewEventInd.this,"Activity Joined!" , Toast.LENGTH_SHORT).show();
+                            buttonJoin.setText("Not Join");
+                            addCalendar.setVisibility(View.VISIBLE);
+                            Log.v("E-Value", "exist is: " + userKeyStringString);
+                        }else{
+                            //myRef.child("participates").child(key).child(userKeyStringString).setValue(false);
+                            myRef.child("participates").child(key).child(userKeyStringString).removeValue();
+                            addCalendar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(ViewEventInd.this,"Activity Not Join!" , Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
 
+        addCalendar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        String eventName = dataSnapshot.child("events").child(key).child("event_name").getValue().toString();
+                        String date = dataSnapshot.child("events").child(key).child("eventDate").getValue().toString();
+                        String time = dataSnapshot.child("events").child(key).child("eventTime").getValue().toString();
+                        String description = dataSnapshot.child("events").child(key).child("description").getValue().toString();
+
+                        Log.v("E-Value", "eventName is: " + eventName);
+                        Log.v("E-Value", "date is: " + date);
+                        Log.v("E-Value", "time is: " + time);
+
+                        int month = Integer.parseInt(date.substring(0,2));
+                        int day = Integer.parseInt(date.substring(3,5));
+                        int year = Integer.parseInt(date.substring(6,8));
+
+
+                        Log.v("E-Value", "month is: " + month);
+                        Log.v("E-Value", "day is: " + day);
+                        Log.v("E-Value", "year is: " + year);
+
+                        int hour = Integer.parseInt(time.substring( 0, time.indexOf(":")));
+                        int min = Integer.parseInt(time.substring(time.indexOf(":") + 1));
+                        Log.v("E-Value", "hour is: " + hour);
+                        Log.v("E-Value", "min is: " + min);
+
+                        Calendar cal = Calendar.getInstance();
+
+                        cal.set(year+2000, month-1, day, hour, min);
+                        long beginTime = cal.getTimeInMillis();
+
+                        Intent intent = new Intent(Intent.ACTION_EDIT);
+                        intent.setType("vnd.android.cursor.item/event");
+                        intent.putExtra("title", eventName);
+                        intent.putExtra("description", description);
+                        intent.putExtra("beginTime", beginTime);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
 
         //for loading event inforamtion
         myRef.addValueEventListener(new ValueEventListener() {

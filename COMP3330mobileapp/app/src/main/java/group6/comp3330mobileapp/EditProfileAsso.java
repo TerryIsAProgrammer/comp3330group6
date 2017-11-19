@@ -47,7 +47,7 @@ public class EditProfileAsso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile_asso);
+        setContentView(R.layout.edit_profile_asso);
 
         icon = (ImageView) findViewById(R.id.icon);
         userName = (TextView) findViewById(R.id.userName);
