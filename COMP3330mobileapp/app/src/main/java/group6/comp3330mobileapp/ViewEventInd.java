@@ -3,41 +3,25 @@ package group6.comp3330mobileapp;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
-import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Map;
-
-import static android.R.attr.content;
-import static android.R.attr.contextUri;
-import static android.R.attr.value;
 
 public class ViewEventInd extends BaseActivity {
 
@@ -63,7 +47,7 @@ public class ViewEventInd extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_event_i);
+        setContentView(R.layout.view_event_ind);
 
         setNavigationViewListener();
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
@@ -83,6 +67,35 @@ public class ViewEventInd extends BaseActivity {
 
         buttonJoin = findViewById(R.id.buttonJoin);
         addCalendar = findViewById(R.id.addCalendar);
+
+        //Check button join status
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                int userKey = gv.getUserID();
+                String userKeyStringString = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+                if (dataSnapshot.child("participates").child(key).hasChild(userKeyStringString)) {
+                    // run some code
+                    //myRef.child("participates").child(key).child(userKeyStringString).setValue(true);
+                    //Toast.makeText(ViewEventInd.this,"Activity Joined!" , Toast.LENGTH_SHORT).show();
+                    buttonJoin.setText("Not Join");
+                    addCalendar.setVisibility(View.VISIBLE);
+                }else{
+                    buttonJoin.setText("Join Now!");
+                    addCalendar.setVisibility(View.INVISIBLE);
+                    //Toast.makeText(ViewEventInd.this,"Activity Not Join!" , Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         buttonJoin.setOnClickListener(new View.OnClickListener(){
 
@@ -105,6 +118,7 @@ public class ViewEventInd extends BaseActivity {
                         }else{
                             //myRef.child("participates").child(key).child(userKeyStringString).setValue(false);
                             myRef.child("participates").child(key).child(userKeyStringString).removeValue();
+                            buttonJoin.setText("Join Now!");
                             addCalendar.setVisibility(View.INVISIBLE);
                             Toast.makeText(ViewEventInd.this,"Activity Not Join!" , Toast.LENGTH_SHORT).show();
 

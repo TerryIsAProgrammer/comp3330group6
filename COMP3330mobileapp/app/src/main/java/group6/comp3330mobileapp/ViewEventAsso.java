@@ -3,7 +3,6 @@ package group6.comp3330mobileapp;
 
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -43,7 +42,7 @@ public class ViewEventAsso extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_event_a);
+        setContentView(R.layout.view_event_asso);
 
         setNavigationViewListener();
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
