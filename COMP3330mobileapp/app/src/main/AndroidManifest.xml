@@ -15,12 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
+          <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+          </intent-filter>
         </activity>
+
         <service android:name=".MyFirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -47,7 +48,8 @@
         <activity android:name=".ProfileInd" />
         <activity android:name=".EditProfileInd" />
         <activity android:name=".EditProfileAsso" />
-        <activity android:name=".Comment"></activity>
+        <activity android:name=".Comment" />
+        <activity android:name=".CommentList"></activity>
     </application>
 
 </manifest>
