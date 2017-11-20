@@ -30,6 +30,7 @@ public class EditProfileInd extends AppCompatActivity {
     TextView gender;
     TextView university;
     TextView degree;
+
     TextView uid;
     EditText phoneEdit;
     EditText emailEdit;
