@@ -79,27 +79,21 @@ public class RegisterStudent extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String usernameString = username.getText().toString();
                         String passwordString = password.getText().toString();
-                        String uidString = uid.getText().toString();
+                        int thisuid = Integer.valueOf(uid.getText().toString());
                         String emailString = email.getText().toString();
                         String universityString = university[universitySpinner.getSelectedItemPosition()];
 
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            String userIDString = data.child("userID").getValue().toString(); //retrieve from old user id
+                            int userIDInt = Integer.valueOf(userIDString)+1; // new user id in integer
+                            String userIDString_new = String.format("%03d",userIDInt); //reformat new user id
 
-                            int userIDInt = Integer.valueOf(data.child("userID").getValue().toString())+1;
-                            String userIDString = String.format("%03d",userIDInt);
-
-                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,uidString,
-                                    emailString,universityString,"S");
-                            testRef.child(userIDString).setValue(createNewUser);
+                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString, thisuid,emailString,"S",userIDString_new);
+                            testRef.child(userIDString_new).setValue(createNewUser);
 
                             Toast.makeText(RegisterStudent.this, "Registration Succeed, Please Login In",
                                     Toast.LENGTH_SHORT).show();
-                            Intent myIntent = new Intent(view.getContext(), MainActivity.class);
-                            try {
-                                startActivity(myIntent);
-                            }
-                            catch(android.content.ActivityNotFoundException e) {
-                            }
+
                         }
                     }
 
@@ -109,6 +103,13 @@ public class RegisterStudent extends AppCompatActivity {
                         //Handle possible errors.
                     }
                 });
+
+                Intent myIntent = new Intent(view.getContext(), MainActivity.class);
+                try {
+                    startActivity(myIntent);
+                }
+                catch(android.content.ActivityNotFoundException e) {
+                }
             }
         });
     }
@@ -118,28 +119,30 @@ public class RegisterStudent extends AppCompatActivity {
         private String username;
         private String password;
         private String email;
-        private String uid;
+        private int uid;
+        private String userID;
         private String university;
         private String identity;
 
         public UserInfo(){}
 
-        public UserInfo (String username, String password, String email, String uid,
-                            String university,String identity){
+        public UserInfo (String username, String password, String university, int uid, String email ,String identity, String userID){
             this.username = username;
             this.password = password;
             this.email = email;
             this.uid = uid;
             this.university = university;
             this.identity = identity;
+            this.userID = userID;
         }
 
         public String getUsername(){return username;}
         public String getPassword(){return password;}
         public String getEmail(){return email;}
-        public String getUid(){return uid;}
+        public int getUid(){return uid;}
         public String getUniversity(){return university;}
         public String getIdentity(){return identity;}
+        public String getuserID(){return userID;}
     }
 
 }
