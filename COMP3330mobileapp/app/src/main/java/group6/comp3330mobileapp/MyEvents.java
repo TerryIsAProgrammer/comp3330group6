@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +35,8 @@ public class MyEvents extends BaseActivity {
     ListView listViewP;
     private static MyEventsListAdapter adapter;
     private static MyEventsListAdapter adapterP;
+
+    Button newE;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -63,8 +66,19 @@ public class MyEvents extends BaseActivity {
         dataModels= new ArrayList<>();
         dataModelsP= new ArrayList<>();
 
+        newE = findViewById(R.id.newEvent);
+        newE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyEvents.this,CreateEventAsso.class);
+                startActivity(intent);
+            }
+        });
+
 
         if (userIdentity.equals("S")){
+
+            newE.setVisibility(View.GONE);
 
             myRef.child("participates").addValueEventListener(new ValueEventListener(){
 
@@ -72,6 +86,8 @@ public class MyEvents extends BaseActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     final ArrayList<String> eventArr = new ArrayList<>();
+                    dataModels.clear();
+                    dataModelsP.clear();
 
                     for (DataSnapshot d:dataSnapshot.getChildren()) {
                         if (d.hasChild(userkey)){
@@ -84,20 +100,25 @@ public class MyEvents extends BaseActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
+                            dataModels.clear();
+                            dataModelsP.clear();
+
                             for (String s:eventArr) {
                                 String eventID = (String) dataSnapshot.child(s).child("eventID").getValue();
                                 String eventName = (String) dataSnapshot.child(s).child("event_name").getValue();
                                 String eventTime = (String) dataSnapshot.child(s).child("eventTime").getValue();
                                 String eventDate = (String) dataSnapshot.child(s).child("eventDate").getValue();
                                 String timestamp = (String) dataSnapshot.child(s).child("datetime").getValue();
+                                //int view = (int)dataSnapshot.child(s).child("view").getValue();
+
                                 long tsint = Long.valueOf(timestamp).longValue();
 
                                 long millis = System.currentTimeMillis();// % 1000;
 
                                 if (tsint <= millis){
-                                    dataModelsP.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp));
+                                    dataModelsP.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp,0,null));
                                 }else{
-                                    dataModels.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp));
+                                    dataModels.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp,0,null));
                                 }
                             }
 
@@ -119,7 +140,7 @@ public class MyEvents extends BaseActivity {
                                     Intent intent = new Intent(MyEvents.this,ViewEventInd.class);
                                     intent.putExtra("eventID",eventID);
                                     startActivity(intent);
-                                    finish();
+                                    //finish();
                                 }
                             });
 
@@ -132,7 +153,7 @@ public class MyEvents extends BaseActivity {
                                     Intent intent = new Intent(MyEvents.this,ViewEventInd.class);
                                     intent.putExtra("eventID",eventID);
                                     startActivity(intent);
-                                    finish();
+                                    //finish();
                                 }
                             });
 
@@ -163,6 +184,8 @@ public class MyEvents extends BaseActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     final ArrayList<String> eventArr = new ArrayList<>();
+                    dataModels.clear();
+                    dataModelsP.clear();
 
                     for (DataSnapshot d:dataSnapshot.getChildren()) {
                         if (d.child("organiser").getValue().equals(userkey)){
@@ -173,57 +196,20 @@ public class MyEvents extends BaseActivity {
                             String eventTime = (String) d.child("eventTime").getValue();
                             String eventDate = (String) d.child("eventDate").getValue();
                             String timestamp = (String) d.child("datetime").getValue();
+                            //int view = (int)d.child("view").getValue();
+
                             long tsint = Long.valueOf(timestamp).longValue();
 
                             long millis = System.currentTimeMillis();// % 1000;
 
                             if (tsint <= millis){
-                                dataModelsP.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp));
+                                dataModelsP.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp,0,null));
                             }else{
-                                dataModels.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp));
+                                dataModels.add(new Event_forMyEvent(eventName, eventName, eventDate, eventTime, eventID,timestamp,0,null));
                             }
                         }
                     }
 
-                    /*dataModels.sort(new Comparator<Event_forMyEvent>() {
-                        @Override
-                        public int compare(Event_forMyEvent t, Event_forMyEvent t1) {
-                            if (Long.valueOf(t.getTimeStamp()).longValue() < Long.valueOf(t1.getTimeStamp()).longValue()){
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    });
-
-                    Collections.sort(dataModels, new Comparator<Event_forMyEvent>() {
-                        @Override
-                        public int compare(Event_forMyEvent t, Event_forMyEvent t1) {
-                            if (Long.valueOf(t.getTimeStamp()).longValue() < Long.valueOf(t1.getTimeStamp()).longValue()){
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    });
-
-                    Collections.sort(dataModelsP, new Comparator<Event_forMyEvent>() {
-                        @Override
-                        public int compare(Event_forMyEvent t, Event_forMyEvent t1) {
-                            if (Long.valueOf(t.getTimeStamp()).longValue() < Long.valueOf(t1.getTimeStamp()).longValue()){
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    });
-
-                    dataModelsP.sort(new Comparator<Event_forMyEvent>() {
-                        @Override
-                        public int compare(Event_forMyEvent t, Event_forMyEvent t1) {
-                            if (Long.valueOf(t.getTimeStamp()).longValue() < Long.valueOf(t1.getTimeStamp()).longValue()){
-                                return 1;
-                            }
-                            return 0;
-                        }
-                    });*/
                     Collections.sort(dataModels);
                     Collections.sort(dataModelsP);
 

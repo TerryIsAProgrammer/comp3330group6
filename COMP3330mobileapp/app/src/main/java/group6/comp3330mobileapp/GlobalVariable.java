@@ -5,6 +5,7 @@ public class GlobalVariable extends Application {
 
     private int userID;
     private String identity;
+    private String uni;
 
     //Set variable
     public void setUserID(int userID){
@@ -13,10 +14,12 @@ public class GlobalVariable extends Application {
     public void setIdentity(String identity){
         this.identity=identity;
     }
+    public void setUni(String uni){this.uni=uni;}
 
     //Get Variable
     public int getUserID(){
         return userID;
     }
     public String getIdentity(){return identity;}
+    public String getUni(){return uni;}
 }

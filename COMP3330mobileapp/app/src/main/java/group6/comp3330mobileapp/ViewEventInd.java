@@ -100,6 +100,12 @@ public class ViewEventInd extends BaseActivity {
         });
 
 
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        String userIdentity = gv.getIdentity();
+        if (userIdentity.equals("A")){
+            buttonJoin.setVisibility(View.GONE);
+            addCalendar.setVisibility(View.GONE);
+        }
 
         buttonJoin.setOnClickListener(new View.OnClickListener(){
 
@@ -192,7 +198,7 @@ public class ViewEventInd extends BaseActivity {
         });
 
         //for loading event inforamtion
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -223,9 +229,21 @@ public class ViewEventInd extends BaseActivity {
                 viewDescriptionI.setText(description);
 
                 StorageReference pathReference = mStorageRef.child("eventPoster/"+name);
-                Glide.with(ViewEventInd.this).using(new FirebaseImageLoader()).load(pathReference).into(posterI);
+                Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(posterI);
 
 
+                String timestamp = (String)dataSnapshot.child("events").child(key).child("datetime").getValue();
+                long tsint = Long.valueOf(timestamp).longValue();
+
+                long millis = System.currentTimeMillis();
+
+                if (tsint < millis){
+                    buttonJoin.setVisibility(View.GONE);
+                    addCalendar.setVisibility(View.GONE);
+                }
+
+                long views = (long)dataSnapshot.child("events").child(key).child("view").getValue();
+                myRef.child("events").child(key).child("view").setValue(views+1);
             }
 
 
@@ -235,7 +253,6 @@ public class ViewEventInd extends BaseActivity {
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
 
         //for loading poster
         //Glide.with(this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(posterI);

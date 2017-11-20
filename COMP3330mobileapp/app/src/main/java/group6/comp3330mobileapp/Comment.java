@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class Comment extends AppCompatActivity {
+public class Comment extends BaseActivity {
 
     ImageView poster;
     TextView userName;
@@ -68,7 +68,7 @@ public class Comment extends AppCompatActivity {
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
                 StorageReference pathReference = mStorageRef.child("eventPoster/"+eventNameC);
                 //for loading poster
-                Glide.with(Comment.this).using(new FirebaseImageLoader()).load(pathReference).into(poster);
+                Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(poster);
 
                 post.setOnClickListener(new View.OnClickListener(){
                     @Override

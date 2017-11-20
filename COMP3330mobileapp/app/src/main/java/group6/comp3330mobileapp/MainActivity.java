@@ -94,10 +94,12 @@ public class MainActivity extends AppCompatActivity{
                                 //Toast.makeText(MainActivity.this, , Toast.LENGTH_SHORT).show();
                                 int userKey = Integer.parseInt(thisSnapshot.getKey());
                                 String dbIdentity = (String)thisSnapshot.child("identity").getValue();
+                                String dbUni = (String)thisSnapshot.child("university").getValue();
 
                                 GlobalVariable gv = (GlobalVariable)getApplicationContext();
                                 gv.setUserID(userKey);
                                 gv.setIdentity(dbIdentity);
+                                gv.setUni(dbUni);
 
                                 Intent myIntent = new Intent(view.getContext(), HomePage.class);
                                 myIntent.putExtra("userKey", userKey);

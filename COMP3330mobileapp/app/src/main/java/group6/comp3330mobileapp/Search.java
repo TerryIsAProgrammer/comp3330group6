@@ -303,12 +303,14 @@ public class Search extends BaseActivity{
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         ArrayList<Event> eventArr = new ArrayList<>();
+                        ArrayList<String> eventArrStr = new ArrayList<>();
 
                         Log.println(Log.DEBUG,"a","a");
                         for (DataSnapshot d:dataSnapshot.getChildren()){
 
                             String eventID = d.getKey();
-                            String contact = d.child("contact").getValue().toString();
+                            String contactName = d.child("contactName").getValue().toString();
+                            String contactPhone = d.child("contactPhone").getValue().toString();
                             String datetime = (String)d.child("datetime").getValue();
                             String description = (String)d.child("description").getValue();
                             String district = (String)d.child("district").getValue();
@@ -318,12 +320,18 @@ public class Search extends BaseActivity{
                             String type = (String)d.child("type").getValue();
                             String university = (String)d.child("university").getValue();
 
-                            Event e1 = new Event(eventID,contact,datetime, description,district,event_name,location,organiser,type,university);
+                            Event e1 = new Event(eventID,contactName,contactPhone,datetime, description,district,event_name,location,organiser,type,university);
 
                             if (e1.allMatch(keywordStr,distStr,keywordStr,locStr,typeStr,uniStr)) {
                                 eventArr.add(e1);
+                                eventArrStr.add(eventID);
                             }
                         }
+
+                        Intent intent = new Intent(Search.this, HomePage.class);
+                        intent.putExtra("searchResults", eventArrStr);
+                        startActivity(intent);
+
                         Log.println(Log.DEBUG,"a","a");
                         //Toast.makeText(Search.this,"size of eventarrr: "+eventArr.size() , Toast.LENGTH_SHORT).show();
                     }
@@ -345,7 +353,8 @@ public class Search extends BaseActivity{
 class Event{
 
     private String eventID;
-    private String contact;
+    private String contactName;
+    private String contactPhone;
     private String datetime;
     private String description;
     private String district;
@@ -355,10 +364,11 @@ class Event{
     private String type;
     private String university;
 
-    public Event(String eventID,String contact,String datetime,String description,String district,String event_name,String location,String organiser,String type,String university){
+    public Event(String eventID,String contactName,String contactPhone,String datetime,String description,String district,String event_name,String location,String organiser,String type,String university){
 
         this.eventID = eventID;
-        this.contact = contact;
+        this.contactName = contactName;
+        this.contactPhone = contactPhone;
         this.datetime = datetime;
         this.description = description;
         this.district = district;

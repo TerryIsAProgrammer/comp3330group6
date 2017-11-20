@@ -47,13 +47,15 @@
         <activity android:name=".ViewEventInd" />
         <activity android:name=".CreateEventAsso" />
         <activity android:name=".ViewEventAsso" />
-        <activity android:name=".ProfileAsso" />
-        <activity android:name=".ProfileInd" />
+        <activity android:name=".ProfileAsso"
+            android:label="My Profile" />
+        <activity android:name=".ProfileInd"
+            android:label="My Profile" />
         <activity android:name=".EditProfileInd" />
         <activity android:name=".EditProfileAsso" />
         <activity android:name=".Comment" />
         <activity android:name=".MyEvents"
-            android:label="MyEvents" />
+            android:label="My Events" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

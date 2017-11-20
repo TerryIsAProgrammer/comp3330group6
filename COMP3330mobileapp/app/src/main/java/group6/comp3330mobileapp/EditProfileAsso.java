@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class EditProfileAsso extends AppCompatActivity {
+public class EditProfileAsso extends BaseActivity {
 
     ImageView icon;
     TextView userName;
@@ -41,13 +41,18 @@ public class EditProfileAsso extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
     DatabaseReference testRef = myRef.child("users");
-    String key = "003";
+    String key;// = "003";
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_asso);
+
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        int userKey = gv.getUserID();
+        key = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+
 
         icon = (ImageView) findViewById(R.id.icon);
         userName = (TextView) findViewById(R.id.userName);
@@ -115,9 +120,9 @@ public class EditProfileAsso extends AppCompatActivity {
                 biography.setText(biographyI);
 
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
-                StorageReference pathReference = mStorageRef.child("icon/3.jpg");
+                StorageReference pathReference = mStorageRef.child(iconI);
                 //for loading poster
-                Glide.with(EditProfileAsso.this).using(new FirebaseImageLoader()).load(pathReference).into(icon);
+                Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(icon);
 
                 //updated user information
                 save.setOnClickListener(new View.OnClickListener(){

@@ -13,23 +13,24 @@ public class Event_forMyEvent implements Comparable<Event_forMyEvent>{
     private String time;
     private String date;
     private String timeStamp;
+    private int view;
+    private String uni;
 
     private String eventID;
 
-    Event_forMyEvent(String picURL, String title, String date, String time, String eventID,String timeStamp){
+    Event_forMyEvent(String picURL, String title, String date, String time, String eventID,String timeStamp, int view, String uni){
         this.picURL = picURL;
         this.title = title;
         this.time = time;
         this.eventID = eventID;
         this.date = date;
         this.timeStamp = timeStamp;
+        this.view = view;
+        this.uni = uni;
     }
 
     public int compareTo(Event_forMyEvent e) {
-        if (Long.valueOf(timeStamp).longValue() < Long.valueOf(e.getTimeStamp()).longValue()){
-            return 1;
-        }
-        return 0;
+        return timeStamp.compareTo(e.getTimeStamp());
     }
 
 
@@ -55,5 +56,11 @@ public class Event_forMyEvent implements Comparable<Event_forMyEvent>{
 
     public String getTimeStamp(){
         return timeStamp;
+    }
+
+    public Integer getView(){return new Integer(view);}
+
+    public String getUni(){
+        return uni;
     }
 }

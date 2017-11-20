@@ -109,7 +109,7 @@ public class ViewEventAsso extends BaseActivity {
 
                 StorageReference pathReference = mStorageRef.child("eventPoster/"+name);
                 //for loading poster
-                Glide.with(ViewEventAsso.this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(posterA);
+                Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(posterA);
             }
 
             @Override

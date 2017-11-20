@@ -58,11 +58,14 @@ public class RegisterAssociation extends AppCompatActivity {
         ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, university);
         universitySpinner.setAdapter(adapterUni);
 
+        uid.setVisibility(View.GONE);
+
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), RegisterMainPage.class);
                 try {
                     startActivity(myIntent);
+                    finish();
                 }
                 catch(android.content.ActivityNotFoundException e) {
 
@@ -79,7 +82,7 @@ public class RegisterAssociation extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String usernameString = username.getText().toString();
                         String passwordString = password.getText().toString();
-                        int thisuid = Integer.valueOf(uid.getText().toString());
+                        //int thisuid = Integer.valueOf(uid.getText().toString());
                         String emailString = email.getText().toString();
                         String universityString = university[universitySpinner.getSelectedItemPosition()];
 
@@ -88,7 +91,7 @@ public class RegisterAssociation extends AppCompatActivity {
                             int userIDInt = Integer.valueOf(userIDString)+1; // new user id in integer
                             String userIDString_new = String.format("%03d",userIDInt); //reformat new user id
 
-                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString, thisuid,emailString,"S",userIDString_new);
+                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString,emailString,"S",userIDString_new);
                             testRef.child(userIDString_new).setValue(createNewUser);
 
                             Toast.makeText(RegisterAssociation.this, "Registration Succeed, Please Login In",
@@ -107,6 +110,7 @@ public class RegisterAssociation extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), MainActivity.class);
                 try {
                     startActivity(myIntent);
+                    finish();
                 }
                 catch(android.content.ActivityNotFoundException e) {
                 }
@@ -119,18 +123,18 @@ public class RegisterAssociation extends AppCompatActivity {
         private String username;
         private String password;
         private String email;
-        private int uid;
+        //private int uid;
         private String userID;
         private String university;
         private String identity;
 
         public UserInfo(){}
 
-        public UserInfo (String username, String password, String university, int uid, String email ,String identity, String userID){
+        public UserInfo (String username, String password, String university,String email ,String identity, String userID){
             this.username = username;
             this.password = password;
             this.email = email;
-            this.uid = uid;
+            //this.uid = uid;
             this.university = university;
             this.identity = identity;
             this.userID = userID;
@@ -139,7 +143,7 @@ public class RegisterAssociation extends AppCompatActivity {
         public String getUsername(){return username;}
         public String getPassword(){return password;}
         public String getEmail(){return email;}
-        public int getUid(){return uid;}
+        //public int getUid(){return uid;}
         public String getUniversity(){return university;}
         public String getIdentity(){return identity;}
         public String getuserID(){return userID;}

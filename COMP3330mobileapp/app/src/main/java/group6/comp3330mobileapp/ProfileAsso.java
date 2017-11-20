@@ -1,10 +1,13 @@
 package group6.comp3330mobileapp;
 
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +34,7 @@ public class ProfileAsso extends BaseActivity {
     TextView phone;
     TextView email;
 
+    Button edit;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -64,6 +68,15 @@ public class ProfileAsso extends BaseActivity {
         //uid = (TextView) findViewById(R.id.uid);
         phone = (TextView) findViewById(R.id.phone);
         email = (TextView) findViewById(R.id.email);
+
+        edit = findViewById(R.id.editProfile);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),EditProfileAsso.class);
+                startActivity(intent);
+            }
+        });
 
         //for loading event inforamtion
         myRef.addValueEventListener(new ValueEventListener() {
@@ -116,7 +129,7 @@ public class ProfileAsso extends BaseActivity {
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
                 StorageReference pathReference = mStorageRef.child(iconA);
                 //for loading poster
-                Glide.with(ProfileAsso.this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(icon);
+                Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(icon);
             }
 
             @Override

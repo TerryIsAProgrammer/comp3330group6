@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class EditProfileInd extends AppCompatActivity {
+public class EditProfileInd extends BaseActivity {
 
     ImageView icon;
     TextView userName;
@@ -42,13 +42,18 @@ public class EditProfileInd extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
     DatabaseReference testRef = myRef.child("users");
-    String key = "001";
+    String key;// = "001";
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile_ind);
+
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        int userKey = gv.getUserID();
+        key = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+
 
         icon = (ImageView) findViewById(R.id.icon);
         userName = (TextView) findViewById(R.id.userName);
@@ -114,9 +119,9 @@ public class EditProfileInd extends AppCompatActivity {
                 password.setText(passwordI);
 
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
-                StorageReference pathReference = mStorageRef.child("icon/1.jpg");
+                StorageReference pathReference = mStorageRef.child(iconI);
                 //for loading poster
-                Glide.with(EditProfileInd.this).using(new FirebaseImageLoader()).load(pathReference).into(icon);
+                Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(icon);
 
                 //updated user information
                 save.setOnClickListener(new View.OnClickListener(){

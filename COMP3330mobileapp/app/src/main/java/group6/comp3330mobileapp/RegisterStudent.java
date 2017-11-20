@@ -63,6 +63,7 @@ public class RegisterStudent extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), RegisterMainPage.class);
                 try {
                     startActivity(myIntent);
+                    finish();
                 }
                 catch(android.content.ActivityNotFoundException e) {
 
@@ -107,6 +108,7 @@ public class RegisterStudent extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), MainActivity.class);
                 try {
                     startActivity(myIntent);
+                    finish();
                 }
                 catch(android.content.ActivityNotFoundException e) {
                 }

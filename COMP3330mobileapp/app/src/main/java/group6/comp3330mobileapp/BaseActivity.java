@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.action_search:
                 Intent myIntent = new Intent(this,Search.class);
                 startActivity(myIntent);
-                finish();
+                //finish();
                 break;
         }
 
@@ -56,13 +56,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
             case R.id.nav_main:
                 Intent myIntent_main = new Intent(this,HomePage.class);
+                myIntent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent_main);
                 finish();
                 break;
             case R.id.nav_search:
                 Intent myIntent_search = new Intent(this,Search.class);
                 startActivity(myIntent_search);
-                finish();
+                //finish();
                 break;
             case R.id.nav_profile:
                 Intent myIntent_profile = null;
@@ -72,15 +73,16 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     myIntent_profile = new Intent(this,ProfileAsso.class);
                 }
                 startActivity(myIntent_profile);
-                finish();
+                //finish();
                 break;
             case R.id.nav_my_events:
                 Intent myIntent_viewEvent = new Intent(this,MyEvents.class);
                 startActivity(myIntent_viewEvent);
-                finish();
+                //finish();
                 break;
             case R.id.nav_log_out:
                 Intent myIntent_logout = new Intent(this,MainActivity.class);
+                myIntent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(myIntent_logout);
                 finish();
                 break;
@@ -96,8 +98,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     }
 
-    @Override
-    public void onBackPressed() {
-        mDrawerLayout.openDrawer(GravityCompat.START);
-    }
+    //@Override
+    //public void onBackPressed() {
+    //    mDrawerLayout.openDrawer(GravityCompat.START);
+    //}
 }
