@@ -5,18 +5,44 @@
     android:layout_height = "match_parent"
     >
 
-    <Button
+    <TextView
+        android:id="@+id/textView2"
+        style="@android:style/Widget.DeviceDefault.Light.TextView.SpinnerItem"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:text="Student"
-        android:id="@+id/student_button" />
+        android:layout_above="@+id/student_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:text="Select Your Identity"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Association"
+        android:id="@+id/student_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+        android:layout_alignBottom="@+id/association_button"
+        android:layout_alignLeft="@+id/association_button"
+        android:layout_alignStart="@+id/association_button"
+        android:layout_marginBottom="108dp"
+        android:text="Student"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
         android:id="@+id/association_button"
-        android:layout_marginTop="59dp" />
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="300dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="145dp"
+        android:text="Association"
+        android:textAppearance="@android:style/TextAppearance.Material.Display1"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
 
 
 </RelativeLayout>
