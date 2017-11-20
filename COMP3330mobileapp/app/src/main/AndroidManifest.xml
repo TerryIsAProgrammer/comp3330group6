@@ -52,6 +52,8 @@
         <activity android:name=".EditProfileInd" />
         <activity android:name=".EditProfileAsso" />
         <activity android:name=".Comment" />
+        <activity android:name=".MyEvents"
+            android:label="MyEvents" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

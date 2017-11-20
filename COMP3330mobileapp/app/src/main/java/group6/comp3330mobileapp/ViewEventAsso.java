@@ -1,6 +1,7 @@
 package group6.comp3330mobileapp;
 
 
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class ViewEventAsso extends BaseActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
-    String key = "005";
+    String key;// = "005";
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
     //StorageReference pathReference = mStorageRef.child("icon/3.jpg");
     //StorageReference pathReference = mStorageRef.child("icon/*"+key);
@@ -43,6 +44,9 @@ public class ViewEventAsso extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_event_asso);
+
+        Intent intent = getIntent();
+        key = intent.getStringExtra("eventID");
 
         setNavigationViewListener();
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);

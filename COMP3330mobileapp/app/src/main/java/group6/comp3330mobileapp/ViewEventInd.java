@@ -39,7 +39,7 @@ public class ViewEventInd extends BaseActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
-    String key = "005";
+    String key;// = "005";
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
     //StorageReference pathReference = mStorageRef.child("icon/3.jpg");
     //StorageReference pathReference = mStorageRef.child("eventPoster/"+"event1");
@@ -48,6 +48,10 @@ public class ViewEventInd extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_event_ind);
+
+        Intent intent = getIntent();
+
+        key = intent.getStringExtra("eventID");
 
         setNavigationViewListener();
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);

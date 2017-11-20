@@ -25,6 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.action_search:
                 Intent myIntent = new Intent(this,Search.class);
                 startActivity(myIntent);
+                finish();
                 break;
         }
 
@@ -61,6 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.nav_search:
                 Intent myIntent_search = new Intent(this,Search.class);
                 startActivity(myIntent_search);
+                finish();
                 break;
             case R.id.nav_profile:
                 Intent myIntent_profile = null;
@@ -70,9 +72,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     myIntent_profile = new Intent(this,ProfileAsso.class);
                 }
                 startActivity(myIntent_profile);
+                finish();
                 break;
             case R.id.nav_my_events:
-                Intent myIntent_viewEvent = new Intent(this,ViewEventInd.class);
+                Intent myIntent_viewEvent = new Intent(this,MyEvents.class);
                 startActivity(myIntent_viewEvent);
                 finish();
                 break;

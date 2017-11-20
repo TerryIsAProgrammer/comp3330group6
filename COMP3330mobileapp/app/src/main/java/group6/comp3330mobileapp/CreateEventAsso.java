@@ -161,6 +161,9 @@ public class CreateEventAsso extends BaseActivity {
                         String distStr = districts[spnrLocation.getSelectedItemPosition()];
                         String uniStr = unis[spnrUni.getSelectedItemPosition()];
                         String typeStr = types[spnrType.getSelectedItemPosition()];
+                        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                        int organiser = gv.getUserID();
+                        String organiserStr = String.format(java.util.Locale.getDefault(),"%03d",organiser);
                         int view = 0;
 
 
@@ -199,7 +202,7 @@ public class CreateEventAsso extends BaseActivity {
 
                         Information info = new Information(name,date,time,location,
                                 eventContactName,eventContactPhone,description,
-                                DTCombine, distStr,uniStr,typeStr,eventIDString,view);
+                                DTCombine, distStr,uniStr,typeStr,eventIDString,view,organiserStr);
                         //testRef.child(key).setValue(info);
                         testRef.child(eventIDString).setValue(info);
 
@@ -352,6 +355,7 @@ public class CreateEventAsso extends BaseActivity {
         private String type;
         private String eventID;
         private int view;
+        private String organiser;
 
         public Information(){
 
@@ -359,7 +363,7 @@ public class CreateEventAsso extends BaseActivity {
 
         public Information (String event_name, String eventDate, String eventTime, String location,
                             String contactName,String contactPhone, String description, String datetime,
-                            String district, String university, String type, String eventID,int view){
+                            String district, String university, String type, String eventID,int view,String organiser){
             this.event_name = event_name;
             this.eventDate = eventDate;
             this.eventTime = eventTime;
@@ -373,6 +377,7 @@ public class CreateEventAsso extends BaseActivity {
             this.type = type;
             this.eventID = eventID;
             this.view = view;
+            this.organiser = organiser;
 
         }
 
