@@ -78,7 +78,7 @@ public class EditProfileInd extends AppCompatActivity {
                 String userIdI = dataSnapshot.child("users").child(key).child("userID").getValue().toString();
                 String identityI = dataSnapshot.child("users").child(key).child("identity").getValue().toString();
                 String nameI = dataSnapshot.child("users").child(key).child("name").getValue().toString();
-                String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
+                //String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
                 String universityI = dataSnapshot.child("users").child(key).child("university").getValue().toString();
                 String degreeI = dataSnapshot.child("users").child(key).child("degree").getValue().toString();
                 String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
@@ -91,7 +91,7 @@ public class EditProfileInd extends AppCompatActivity {
                 Log.v("E-Value", "userIdI is: " + userIdI);
                 Log.v("E-Value", "identityI is: " + identityI);
                 Log.v("E-Value", "nameI is: " + nameI);
-                Log.v("E-Value", "genderI is: " + genderI);
+                //Log.v("E-Value", "genderI is: " + genderI);
                 Log.v("E-Value", "universityI is: " + universityI);
                 Log.v("E-Value", "degreeI is: " + degreeI);
                 Log.v("E-Value", "uidI is: " + uidI);
@@ -104,7 +104,7 @@ public class EditProfileInd extends AppCompatActivity {
                 userId.setText(userIdI);
                 identity.setText(identityI);
                 name.setText(nameI);
-                gender.setText(genderI);
+                //gender.setText(genderI);
                 university.setText(universityI);
                 degree.setText(degreeI);
                 uid.setText(uidI);
@@ -131,7 +131,7 @@ public class EditProfileInd extends AppCompatActivity {
                                 String userIdI = userId.getText().toString();
                                 String identityI = identity.getText().toString();
                                 String nameI = name.getText().toString();
-                                String genderI = gender.getText().toString();
+                                //String genderI = gender.getText().toString();
                                 String universityI = university.getText().toString();
                                 String degreeI = degree.getText().toString();
                                 String uidI = uid.getText().toString();
@@ -160,7 +160,7 @@ public class EditProfileInd extends AppCompatActivity {
                                 Log.v("E-Value", "userIdI is: " + userIdI);
                                 Log.v("E-Value", "identityI is: " + identityI);
                                 Log.v("E-Value", "nameI is: " + nameI);
-                                Log.v("E-Value", "genderI is: " + genderI);
+                                //Log.v("E-Value", "genderI is: " + genderI);
                                 Log.v("E-Value", "universityI is: " + universityI);
                                 Log.v("E-Value", "degreeI is: " + degreeI);
                                 Log.v("E-Value", "uidI is: " + uidI);
@@ -170,7 +170,7 @@ public class EditProfileInd extends AppCompatActivity {
                                 Log.v("E-Value", "password is: " + biography);
 
 
-                                Users user = new Users(iconI, userNameI, userIdI, identityI, nameI, genderI, universityI,
+                                Users user = new Users(iconI, userNameI, userIdI, identityI, nameI, universityI,
                                         degreeI, uidI, tel_noUpdated, emailUpdated, passwordI,biography);
                                 testRef.child(key).setValue(user);
 
@@ -207,7 +207,7 @@ public class EditProfileInd extends AppCompatActivity {
         private String userID;
         private String identity;
         private String name;
-        private String gender;
+        //private String gender;
         private String university;
         private String degree;
         private String uid;
@@ -220,7 +220,7 @@ public class EditProfileInd extends AppCompatActivity {
 
         }
 
-        public Users (String icon, String username,String userID, String identity, String name, String gender, String university, String degree, String uid,
+        public Users (String icon, String username,String userID, String identity, String name, String university, String degree, String uid,
                       String tel_no, String email, String password, String biography){
 
             this.icon = icon;
@@ -228,7 +228,7 @@ public class EditProfileInd extends AppCompatActivity {
             this.userID = userID;
             this.identity = identity;
             this.name = name;
-            this.gender = gender;
+           // this.gender = gender;
             this.university = university;
             this.degree = degree;
             this.uid = uid;
@@ -243,7 +243,7 @@ public class EditProfileInd extends AppCompatActivity {
         public String getUserID(){return userID;}
         public String getIdentity(){return identity;}
         public String getName(){return name;}
-        public String getGender(){return gender;}
+        //public String getGender(){return gender;}
         public String getUniversity(){return university;}
         public String getDegree(){return degree;}
         public String getUid(){return uid;}

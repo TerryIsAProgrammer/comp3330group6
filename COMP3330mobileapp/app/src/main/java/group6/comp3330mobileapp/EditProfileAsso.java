@@ -77,7 +77,7 @@ public class EditProfileAsso extends AppCompatActivity {
                 String userIdI = dataSnapshot.child("users").child(key).child("userID").getValue().toString();
                 String identityI = dataSnapshot.child("users").child(key).child("identity").getValue().toString();
                 String nameI = dataSnapshot.child("users").child(key).child("name").getValue().toString();
-                String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
+                //String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
                 String universityI = dataSnapshot.child("users").child(key).child("university").getValue().toString();
                 String degreeI = dataSnapshot.child("users").child(key).child("degree").getValue().toString();
                 String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
@@ -91,7 +91,7 @@ public class EditProfileAsso extends AppCompatActivity {
                 Log.v("E-Value", "userIdI is: " + userIdI);
                 Log.v("E-Value", "identityI is: " + identityI);
                 Log.v("E-Value", "nameI is: " + nameI);
-                Log.v("E-Value", "genderI is: " + genderI);
+                //Log.v("E-Value", "genderI is: " + genderI);
                 Log.v("E-Value", "universityI is: " + universityI);
                 Log.v("E-Value", "degreeI is: " + degreeI);
                 Log.v("E-Value", "uidI is: " + uidI);
@@ -105,7 +105,7 @@ public class EditProfileAsso extends AppCompatActivity {
                 userId.setText(userIdI);
                 identity.setText(identityI);
                 name.setText(nameI);
-                gender.setText(genderI);
+                //gender.setText(genderI);
                 university.setText(universityI);
                 degree.setText(degreeI);
                 uid.setText(uidI);

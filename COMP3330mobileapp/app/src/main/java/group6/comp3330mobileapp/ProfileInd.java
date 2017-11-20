@@ -76,7 +76,7 @@ public class ProfileInd extends BaseActivity {
                 String userName = dataSnapshot.child("users").child(key).child("username").getValue().toString();
                 String userId = dataSnapshot.child("users").child(key).child("userID").getValue().toString();
                 String nameI = dataSnapshot.child("users").child(key).child("name").getValue().toString();
-                String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
+                //String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
                 String universityI = dataSnapshot.child("users").child(key).child("university").getValue().toString();
                 String degreeI = dataSnapshot.child("users").child(key).child("degree").getValue().toString();
                 String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
@@ -91,7 +91,7 @@ public class ProfileInd extends BaseActivity {
                 Log.v("E-Value", "userName is: " + userName);
                 Log.v("E-Value", "userId is: " + userId);
                 Log.v("E-Value", "name is: " + nameI);
-                Log.v("E-Value", "gender is: " + genderI);
+                //Log.v("E-Value", "gender is: " + genderI);
                 Log.v("E-Value", "university is: " + universityI);
                 Log.v("E-Value", "degree is: " + degreeI);
                 Log.v("E-Value", "uid is: " + uidI);
@@ -100,7 +100,7 @@ public class ProfileInd extends BaseActivity {
 
                 userNameId.setText("Username : " + userName + "\n" + "User Id : " + userId);
                 name.setText(nameI);
-                gender.setText(genderI);
+                //gender.setText(genderI);
                 university.setText(universityI);
                 degree.setText(degreeI);
                 uid.setText(uidI);
