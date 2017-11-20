@@ -48,7 +48,8 @@ public class HomePage extends BaseActivity{
         title = (TextView) findViewById(R.id.TitleView);
 
         GlobalVariable gv = (GlobalVariable)getApplicationContext();
-        int userKey = gv.getUserID();
+        final int userKey = gv.getUserID();
+        final String thisidentity = gv.getIdentity();
 
         Query query = mDatabase.child("users").orderByChild("userID").equalTo(userKey);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -62,7 +63,7 @@ public class HomePage extends BaseActivity{
                     }
 
                 }else{
-                    title.setText("Wrong query la dllm");
+                    title.setText("Wrong query" + "Userkey: " + userKey + " Identity:" + thisidentity);
                 }
             }
 

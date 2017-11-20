@@ -3,20 +3,20 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height = "match_parent"
+    android:background="@drawable/background_3"
     >
 
     <TextView
         android:id="@+id/textView2"
         style="@android:style/Widget.DeviceDefault.Light.TextView.SpinnerItem"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:layout_above="@+id/student_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="31dp"
         android:text="Select Your Identity"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_above="@+id/student_button"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/student_button"
