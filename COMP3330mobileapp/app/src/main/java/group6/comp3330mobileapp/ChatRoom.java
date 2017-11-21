@@ -12,16 +12,19 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ChatRoom extends AppCompatActivity {
+public class ChatRoom extends BaseActivity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
     FloatingActionButton fab;
-    String username="fofo";
+    String username;//="fofo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_room);
+
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        username = gv.getUserName();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 

@@ -80,6 +80,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 startActivity(myIntent_viewEvent);
                 //finish();
                 break;
+            case R.id.nav_chat:
+                Intent myIntent_chat = new Intent(this,ChatRoom.class);
+                startActivity(myIntent_chat);
+                //finish();
+                break;
             case R.id.nav_log_out:
                 Intent myIntent_logout = new Intent(this,MainActivity.class);
                 myIntent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

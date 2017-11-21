@@ -22,6 +22,11 @@
         android:icon="@mipmap/ic_event_black_24dp"/>
 
     <item
+        android:id="@+id/nav_chat"
+        android:title="Chat Room"
+        android:icon="@mipmap/ic_event_black_24dp"/>
+
+    <item
         android:id="@+id/nav_log_out"
         android:title="Logout" />
 
