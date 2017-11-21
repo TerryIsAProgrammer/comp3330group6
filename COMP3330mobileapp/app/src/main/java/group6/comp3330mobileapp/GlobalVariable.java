@@ -7,10 +7,7 @@ public class GlobalVariable extends Application {
     private String identity;
     private String uni;
     private String userName;
-<<<<<<< HEAD
-=======
 
->>>>>>> 0621021c837e333f2dd2adea44082c80b0c292ae
     //Set variable
     public void setUserID(int userID){
         this.userID=userID;
@@ -19,11 +16,8 @@ public class GlobalVariable extends Application {
         this.identity=identity;
     }
     public void setUni(String uni){this.uni=uni;}
-<<<<<<< HEAD
     public void setUserName(String userName){this.userName = userName;}
-=======
-    public void setUserName(String userName){this.userName=userName;}
->>>>>>> 0621021c837e333f2dd2adea44082c80b0c292ae
+
 
     //Get Variable
     public int getUserID(){

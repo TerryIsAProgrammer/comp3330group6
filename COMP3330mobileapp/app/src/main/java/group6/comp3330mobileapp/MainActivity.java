@@ -101,11 +101,9 @@ public class MainActivity extends AppCompatActivity{
                                 gv.setUserID(userKey);
                                 gv.setIdentity(dbIdentity);
                                 gv.setUni(dbUni);
-<<<<<<< HEAD
                                 gv.setUserName(userName);
-=======
                                 gv.setUserName(dbUserName);
->>>>>>> 0621021c837e333f2dd2adea44082c80b0c292ae
+
 
                                 Intent myIntent = new Intent(view.getContext(), HomePage.class);
                                 myIntent.putExtra("userKey", userKey);
