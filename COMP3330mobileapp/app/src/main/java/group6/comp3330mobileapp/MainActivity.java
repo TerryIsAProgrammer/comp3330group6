@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void submitPost(final View view) {
-        String userName = inputName.getText().toString();
-        String passWord = inputPw.getText().toString();
+        final String userName = inputName.getText().toString();
+        final String passWord = inputPw.getText().toString();
 
         // Title is required
         if (TextUtils.isEmpty(userName)) {
@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity{
                                 gv.setUserID(userKey);
                                 gv.setIdentity(dbIdentity);
                                 gv.setUni(dbUni);
+                                gv.setUserName(userName);
 
                                 Intent myIntent = new Intent(view.getContext(), HomePage.class);
                                 myIntent.putExtra("userKey", userKey);

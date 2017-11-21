@@ -61,32 +61,9 @@ public class HomePage extends BaseActivity{
         title = (TextView) findViewById(R.id.TitleView);
 
         GlobalVariable gv = (GlobalVariable)getApplicationContext();
-        final int userKey = gv.getUserID();
-        final String thisidentity = gv.getIdentity();
+        String thisUserName = gv.getUserName();
 
-        Query query = mDatabase.child("users").orderByChild("userID").equalTo(userKey);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot thisSnapshot: dataSnapshot.getChildren()) {
-                        String username = (String)thisSnapshot.child("username").getValue();
-                        String identity = (String)thisSnapshot.child("identity").getValue();
-                        title.setText("Username: " + username + " Identity:" + identity);
-                    }
-
-                }else{
-                    title.setText("Wrong query" + "Userkey: " + userKey + " Identity:" + thisidentity);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
-
+        title.setText("Welcome back, "  + thisUserName);
         title.findViewById(R.id.TitleView);
 
         recentbtn = findViewById(R.id.RecentButton);
