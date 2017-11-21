@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
     <application
         android:name=".GlobalVariable"
         android:allowBackup="true"
@@ -47,14 +46,17 @@
         <activity android:name=".ViewEventInd" />
         <activity android:name=".CreateEventAsso" />
         <activity android:name=".ViewEventAsso" />
-        <activity android:name=".ProfileAsso"
+        <activity
+            android:name=".ProfileAsso"
             android:label="My Profile" />
-        <activity android:name=".ProfileInd"
+        <activity
+            android:name=".ProfileInd"
             android:label="My Profile" />
         <activity android:name=".EditProfileInd" />
         <activity android:name=".EditProfileAsso" />
         <activity android:name=".Comment" />
-        <activity android:name=".MyEvents"
+        <activity
+            android:name=".MyEvents"
             android:label="My Events" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -82,7 +84,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-
+        <activity android:name=".ChatRoom"></activity>
     </application>
 
 </manifest>
