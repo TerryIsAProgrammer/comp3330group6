@@ -80,8 +80,35 @@
         android:divider="@android:color/transparent"
         android:layout_marginBottom="60dp"
 
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+=======
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="Message..." />
+
+    </android.support.design.widget.TextInputLayout>
+        
+        <ListView
+            android:id="@+id/list_of_message"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/fab"
+            android:dividerHeight="16dp"
+            android:divider="@android:color/transparent"
+            android:layout_marginBottom="16dp"
+
+
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+<!--                android:layout_below="@id/inputLayout"-->
+>>>>>>> 82fdafb4cfbc275f260adda1895917fc63db2f2d
 
 </RelativeLayout>
 

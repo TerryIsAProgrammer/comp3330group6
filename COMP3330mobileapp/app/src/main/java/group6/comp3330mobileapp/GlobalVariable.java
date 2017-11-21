@@ -16,7 +16,8 @@ public class GlobalVariable extends Application {
         this.identity=identity;
     }
     public void setUni(String uni){this.uni=uni;}
-    public void setUserName(String userName){this.userName=userName;}
+    public void setUserName(String userName){this.userName = userName;}
+
 
     //Get Variable
     public int getUserID(){
