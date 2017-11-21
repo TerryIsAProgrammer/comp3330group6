@@ -48,9 +48,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         app:fabSize="mini">
-
     </android.support.design.widget.FloatingActionButton>
-
 
     <ListView
         android:id="@+id/list_of_message"
