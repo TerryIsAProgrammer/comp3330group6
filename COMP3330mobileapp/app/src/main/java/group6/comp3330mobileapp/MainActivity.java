@@ -11,12 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import static android.R.attr.data;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -29,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
     private EditText inputPw;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
@@ -42,7 +48,14 @@ public class MainActivity extends AppCompatActivity{
 
         Button register = (Button) findViewById(R.id.register_button);
         Button login = (Button) findViewById(R.id.login_button);
+        Button thisMap = (Button) findViewById(R.id.map_button);
 
+
+        thisMap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                callpicker();
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -158,4 +171,20 @@ public class MainActivity extends AppCompatActivity{
             }
         }, 2000);
     }
+
+    public void callpicker() {
+        final int REQUEST_PLACE_PICKER = 1;
+        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+        Intent intent;
+        try {
+            intent = intentBuilder.build(this);
+            startActivityForResult(intent, REQUEST_PLACE_PICKER);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 }

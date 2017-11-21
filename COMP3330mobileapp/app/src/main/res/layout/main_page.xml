@@ -99,6 +99,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:text="                  Register                  " />
+
+        <Button
+            android:gravity="center"
+            android:id="@+id/map_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Map"/>
     </LinearLayout>
 
 </RelativeLayout>
