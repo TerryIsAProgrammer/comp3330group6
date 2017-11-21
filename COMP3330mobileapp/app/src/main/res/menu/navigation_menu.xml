@@ -24,10 +24,11 @@
     <item
         android:id="@+id/nav_chat"
         android:title="Chat Room"
-        android:icon="@mipmap/ic_event_black_24dp"/>
+        android:icon="@drawable/ic_forum_black_24dp"/>
 
     <item
         android:id="@+id/nav_log_out"
-        android:title="Logout" />
+        android:title="Logout"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"/>
 
 </menu>
