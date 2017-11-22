@@ -35,7 +35,8 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/ic_local_activity_black_24dp" />
+                    app:srcCompat="@drawable/ic_local_activity_black_24dp"
+                    android:tint="@color/colorPrimary"/>
 
                 <EditText
                     android:id="@+id/keyword"
@@ -61,7 +62,8 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
 
-                    app:srcCompat="@drawable/ic_place_black_24dp" />
+                    app:srcCompat="@drawable/ic_place_black_24dp"
+                    android:tint="@color/colorPrimary"/>
 
 
                 <LinearLayout
@@ -99,7 +101,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_school_black_24dp" />
+                    app:srcCompat="@drawable/ic_school_black_24dp"
+                    android:tint="@color/colorPrimary" />
 
                 <Spinner
                     android:id="@+id/spinnerUni"
@@ -121,7 +124,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_local_bar_black_24dp" />
+                    app:srcCompat="@drawable/ic_local_bar_black_24dp"
+                    android:tint="@color/colorPrimary" />
 
                 <Spinner
                     android:id="@+id/spinnerType"
@@ -143,7 +147,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_date_range_black_24dp" />
+                    app:srcCompat="@drawable/ic_date_range_black_24dp"
+                    android:tint="@color/colorPrimary" />
 
                 <EditText
                     android:id="@+id/StartDate"
@@ -186,7 +191,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_access_time_black_24dp" />
+                    app:srcCompat="@drawable/ic_access_time_black_24dp"
+                    android:tint="@color/colorPrimary" />
 
                 <EditText
                     android:id="@+id/StartTime"
@@ -253,7 +259,8 @@
                     android:id="@+id/buttonSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Search!" />
+                    android:text="Search!"
+                    style="@style/Widget.AppCompat.Button.Colored"/>
 
             </LinearLayout>
 
