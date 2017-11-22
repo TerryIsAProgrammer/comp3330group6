@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity{
     private EditText inputName;
     private EditText inputPw;
 
+    final int REQUEST_PLACE_PICKER = 1;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
 
         thisMap.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                callpicker();
+                HandleSenderAddressPickerClicked(view);
             }
         });
 
@@ -172,17 +174,47 @@ public class MainActivity extends AppCompatActivity{
         }, 2000);
     }
 
-    public void callpicker() {
-        final int REQUEST_PLACE_PICKER = 1;
-        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
-        Intent intent;
-        try {
-            intent = intentBuilder.build(this);
-            startActivityForResult(intent, REQUEST_PLACE_PICKER);
-        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
+
+    public void HandleSenderAddressPickerClicked(View view) {
+        int PLACE_PICKER_REQUEST = 1;
+        LoadPlacePicker(PLACE_PICKER_REQUEST);
+    }
+
+    public void HandleRecieverAddressPickerClicked(View view) {
+        int PLACE_PICKER_REQUEST = 2;
+        LoadPlacePicker(PLACE_PICKER_REQUEST);
+    }
+
+    private void LoadPlacePicker(int PlacePickerRequest) {
+        try{
+            PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+            Intent intent = intentBuilder.build(this);
+            // Start the Intent by requesting a result, identified by a request code.
+            startActivityForResult(intent, PlacePickerRequest);
+        } catch (GooglePlayServicesRepairableException e) {
+        } catch (GooglePlayServicesNotAvailableException e) {
         }
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                String toastMsg = String.format("Sender Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+            }
+        }
+
+        //Reciever
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                String toastMsg = String.format("Receiver Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 
 
 
