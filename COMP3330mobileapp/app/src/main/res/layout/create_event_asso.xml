@@ -19,7 +19,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -39,7 +42,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -53,13 +59,19 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Set Date"
-                android:inputType="date" />
+
+                android:focusable="false"
+                android:clickable="true"
+                android:editable="false"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -73,13 +85,19 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Set Time"
-                android:inputType="time" />
+
+                android:focusable="false"
+                android:clickable="true"
+                android:editable="false"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -100,7 +118,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -129,6 +150,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -149,25 +173,46 @@
         <Spinner
             android:id="@+id/spinnerDistrict"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:textSize="20sp"/>
 
         <Spinner
             android:id="@+id/spinnerUni"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:spinnerMode="dropdown"
+            android:textSize="20sp"/>
 
         <Spinner
             android:id="@+id/spinnerType"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:spinnerMode="dropdown"
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/choose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Choose Poster" />
+            android:text="Choose Poster"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
         <ImageView
             android:id="@+id/posterUpload"
@@ -179,7 +224,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Submit" />
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Submit!"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
 
     </LinearLayout>

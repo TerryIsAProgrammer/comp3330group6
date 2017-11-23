@@ -216,6 +216,8 @@ public class CreateEventAsso extends BaseActivity {
 
                 uploadImage();
 
+                finish();
+
             }
         });
 
@@ -394,6 +396,7 @@ public class CreateEventAsso extends BaseActivity {
         public String getType(){return type;}
         public String getEventID(){return eventID;}
         public int getView(){return view;}
+        public String getOrganiser(){return organiser;}
     }
 
 
