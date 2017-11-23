@@ -31,7 +31,8 @@
             android:label="@string/title_activity_maps">
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -51,30 +52,34 @@
         </service>
 
         <activity android:name=".RegisterMainPage" />
-        <activity android:name=".RegisterStudent" />
-        <activity android:name=".RegisterAssociation" />
+        <activity android:name=".RegisterStudent"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".RegisterAssociation"
+                  android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".HomePage" />
-        <activity
-            android:name=".Search"
-            android:label="Advanced Search"
-            android:theme="@style/AppTheme" />
+        <activity android:name=".Search"
+                  android:label="Advanced Search"
+                  android:theme="@style/AppTheme"
+                  android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ViewEventInd" />
-        <activity android:name=".CreateEventAsso" />
+        <activity android:name=".CreateEventAsso"
+                  android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ViewEventAsso" />
-        <activity
-            android:name=".ProfileAsso"
-            android:label="My Profile" />
-        <activity
-            android:name=".ProfileInd"
-            android:label="My Profile" />
-        <activity android:name=".EditProfileInd" />
-        <activity android:name=".EditProfileAsso" />
-        <activity android:name=".Comment" />
+        <activity android:name=".ProfileAsso"
+                  android:label="My Profile" />
+        <activity android:name=".ProfileInd"
+                  android:label="My Profile" />
+        <activity android:name=".EditProfileInd"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".EditProfileAsso"
+                  android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".Comment"
+                  android:windowSoftInputMode="stateHidden"/>
         <!--<activity android:name=".Location" />-->
-        <activity
-            android:name=".MyEvents"
-            android:label="My Events" />
-        <activity android:name=".ChatRoom"></activity>
+        <activity android:name=".MyEvents"
+                  android:label="My Events" />
+        <activity android:name=".ChatRoom"
+                  android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>
