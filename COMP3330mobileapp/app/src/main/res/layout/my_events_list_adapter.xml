@@ -5,9 +5,10 @@
     android:orientation="horizontal"
     android:layout_marginBottom="10dp">
 
+
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="140dp"
+        android:layout_height="110dp"
         android:id="@+id/eventPic"/>
 
     <LinearLayout
@@ -16,35 +17,40 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:id="@+id/eventTitle"
-            android:textSize="30dp"
-            android:textColor="#000000"/>
+            android:textSize="24dp"
+            android:textColor="#565555"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/eventDate"
-                android:textSize="20dp"
-                android:textColor="#444444"/>
+                android:textSize="17dp"
+                android:textColor="#7e7e7e"
+                android:gravity="bottom"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/eventTime"
-                android:textSize="20dp"
-                android:textColor="#444444"/>
+                android:textSize="17dp"
+                android:textColor="#7e7e7e"
+                android:layout_toRightOf="@+id/eventDate"/>
 
-        </LinearLayout>
+        </RelativeLayout>
+
 
 
     </LinearLayout>
-
 
 </LinearLayout>

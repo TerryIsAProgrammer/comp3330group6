@@ -5,10 +5,18 @@
     android:layout_height = "match_parent"
     tools:context = ".RegisterStudent">
 
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/logo"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/textview"/>
+
     <TextView android:text = "Activator" android:layout_width="wrap_content"
         android:layout_height = "wrap_content"
         android:id = "@+id/textview"
         android:textSize = "35dp"
+        android:layout_marginTop="20dp"
         android:layout_alignParentTop = "true"
         android:layout_centerHorizontal = "true" />
 
@@ -19,18 +27,18 @@
         android:text = "Please fill in the information"
         android:id = "@+id/textView"
         android:layout_below="@+id/textview"
+        android:layout_marginTop="12dp"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:id = "@+id/editText1"
-        android:hint = "Please eneter username"
+        android:hint = "Please enter username"
+        android:layout_centerHorizontal="true"
         android:focusable = "true"
         android:layout_marginTop = "24dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_below="@+id/textView" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,24 +46,38 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText2"
-        android:hint="Please eneter Password"
+        android:hint="Please enter Password"
         android:layout_marginTop="14dp"
         android:layout_below="@+id/editText1"
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignStart="@+id/editText1"
         android:layout_alignRight="@+id/editText1"
         android:layout_alignEnd="@+id/editText1" />
+
+    <EditText
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:id = "@+id/editTextAssoName"
+        android:hint = "Please enter the name of your association"
+        android:layout_centerHorizontal="true"
+        android:focusable = "true"
+        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
+
     <Spinner
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editTextAssoName"
         android:layout_marginTop="14dp"
-        android:hint="Please eneter Password"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:hint="Please enter Password"
+        android:layout_alignRight="@+id/editTextAssoName"
+        android:layout_alignEnd="@+id/editTextAssoName"
+        android:layout_alignLeft="@+id/editTextAssoName"
+        android:layout_alignStart="@+id/editTextAssoName" />
 
 
 
@@ -64,7 +86,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/editText4"
-        android:hint="Please eneter your UID"
+        android:hint="Please enter your UID"
         android:layout_marginTop="14dp"
         android:layout_below="@+id/editText3"
         android:layout_alignLeft="@+id/editText3"
@@ -86,12 +108,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Regiter"
+        android:text="Register"
         android:id="@+id/register_button"
         android:layout_alignBaseline="@+id/back_button"
         android:layout_alignBottom="@+id/back_button"
         android:layout_alignLeft="@+id/editText5"
-        android:layout_alignStart="@+id/editText5" />
+        android:layout_alignStart="@+id/editText5"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -101,6 +124,7 @@
         android:layout_below="@+id/editText5"
         android:layout_alignRight="@+id/editText5"
         android:layout_alignEnd="@+id/editText5"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
 </RelativeLayout>

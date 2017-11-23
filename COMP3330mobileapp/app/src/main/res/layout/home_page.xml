@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/white"
     tools:context = ".HomePage"
     android:id="@+id/drawerLayout">
 
@@ -31,6 +31,7 @@
                 android:textSize="25dp" />
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
 
             <Button
                 android:id="@+id/RecentButton"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="36dp"
                 android:text="Recent"
                 android:textSize="15sp"
@@ -50,7 +51,7 @@
 
             <Button
                 android:id="@+id/HotEventsButton"
-                android:layout_width="120dp"
+                android:layout_width="125dp"
                 android:layout_height="36dp"
                 android:text="Hot"
                 android:textSize="15sp"
@@ -59,7 +60,7 @@
 
             <Button
                 android:id="@+id/UEventsButton"
-                android:layout_width="115dp"
+                android:layout_width="125dp"
                 android:layout_height="36dp"
                 android:text="University"
                 android:textSize="15sp"
@@ -84,7 +85,8 @@
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
         android:id="@+id/navigation_menu"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        app:headerLayout="@layout/drawer_header">
 
     </android.support.design.widget.NavigationView>
 
