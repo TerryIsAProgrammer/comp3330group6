@@ -36,7 +36,8 @@
         android:maxLines="4"
         android:isScrollContainer="true"
         android:scrollbars="vertical"
-        android:focusable="true" />
+        android:focusable="true"
+        android:layout_margin="10dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -47,7 +48,8 @@
         app:backgroundTint="#0ABAB5"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        app:fabSize="mini">
+        app:fabSize="mini"
+        android:layout_margin="10dp">
     </android.support.design.widget.FloatingActionButton>
 
     <ListView

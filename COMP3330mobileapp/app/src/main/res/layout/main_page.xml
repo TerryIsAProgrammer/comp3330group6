@@ -42,7 +42,9 @@
         android:layout_alignStart="@+id/textView"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:maxLines="1"
+        android:inputType="text"
          />
     <EditText
         android:layout_width="wrap_content"
@@ -57,7 +59,8 @@
         android:layout_alignStart="@+id/text_username"
         android:layout_alignRight="@+id/text_username"
         android:layout_alignEnd="@+id/text_username"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:maxLines="1"/>
 
 
     <LinearLayout
