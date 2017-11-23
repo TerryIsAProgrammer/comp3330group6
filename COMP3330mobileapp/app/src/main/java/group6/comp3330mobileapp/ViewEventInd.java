@@ -147,7 +147,7 @@ public class ViewEventInd extends BaseActivity {
         addCalendar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                myRef.addValueEventListener(new ValueEventListener() {
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -184,8 +184,8 @@ public class ViewEventInd extends BaseActivity {
                         intent.putExtra("title", eventName);
                         intent.putExtra("description", description);
                         intent.putExtra("beginTime", beginTime);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
                         startActivity(intent);
-
                     }
 
                     @Override
