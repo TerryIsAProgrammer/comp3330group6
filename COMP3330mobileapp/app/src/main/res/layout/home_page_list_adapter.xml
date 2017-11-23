@@ -2,17 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="20dp"
-    android:background="@android:color/white">
+    android:background="@drawable/listview_wrapper_homepage">
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:id="@+id/eventPic"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/eventPic"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +62,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"/>
 
 </LinearLayout>

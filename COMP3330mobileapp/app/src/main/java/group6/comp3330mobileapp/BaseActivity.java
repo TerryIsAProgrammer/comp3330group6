@@ -3,10 +3,12 @@ package group6.comp3330mobileapp;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -19,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
     protected DrawerLayout mDrawerLayout;
     protected ActionBarDrawerToggle mToggle;
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

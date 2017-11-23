@@ -3,17 +3,21 @@ package group6.comp3330mobileapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +35,7 @@ import java.util.Iterator;
  * Created by Terry on 11/6/2017.
  */
 
-public class HomePage extends BaseActivity{
+public class HomePage extends BaseActivity {
 
     private DatabaseReference mDatabase;
     TextView title ;
@@ -44,6 +48,9 @@ public class HomePage extends BaseActivity{
     Button recentbtn;
     Button hotbtn;
     Button uniBtn;
+
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,6 +253,7 @@ public class HomePage extends BaseActivity{
                 // Failed to read value
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
+
         });
     }
 
