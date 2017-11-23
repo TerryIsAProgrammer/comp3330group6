@@ -29,6 +29,7 @@
         android:paddingStart="8dp"
         android:background="@drawable/bkg"
         android:hint="Message..."
+        android:gravity="top|left"
 
         android:inputType="textMultiLine"
         android:enabled="true"
