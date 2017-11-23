@@ -42,7 +42,9 @@
         android:layout_alignStart="@+id/textView"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:maxLines="1"
+        android:inputType="text"
          />
     <EditText
         android:layout_width="wrap_content"
@@ -57,12 +59,13 @@
         android:layout_alignStart="@+id/text_username"
         android:layout_alignRight="@+id/text_username"
         android:layout_alignEnd="@+id/text_username"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:maxLines="1"/>
 
 
     <LinearLayout
         android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_below="@+id/text_password"
@@ -76,7 +79,6 @@
         <Button
             android:gravity="center"
             android:id="@+id/login_button"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:textSize="15sp"
             android:textColor="@android:color/white"
             android:background="@drawable/button_border_mainpage"
@@ -84,7 +86,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="                     Login                     " />
+            android:text="                     Login                     "
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
         <Button
             android:gravity="center"

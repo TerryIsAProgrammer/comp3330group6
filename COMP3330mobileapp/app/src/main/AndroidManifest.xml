@@ -25,11 +25,13 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden">
-          <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
+        <activity android:name=".MainActivity"
+                  android:windowSoftInputMode="stateHidden"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:label="@string/title_activity_maps">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
           </intent-filter>

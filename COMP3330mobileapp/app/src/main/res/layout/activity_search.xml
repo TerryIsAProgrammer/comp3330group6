@@ -76,7 +76,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="5dp"
-                        android:spinnerMode="dropdown" />
+                        android:spinnerMode="dropdown"
+                        android:textSize="20sp"/>
 
                     <EditText
                         android:id="@+id/locationKeyword"
@@ -109,7 +110,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 
@@ -132,7 +134,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 
@@ -158,6 +161,7 @@
                     android:layout_marginLeft="5dp"
                     android:clickable="true"
                     android:editable="false"
+                    android:focusable="false"
                     android:hint="@string/searchDate1"/>
 
                 <TextView
@@ -175,6 +179,7 @@
                     android:layout_marginLeft="5dp"
                     android:clickable="true"
                     android:editable="false"
+                    android:focusable="false"
                     android:hint="@string/searchDate2"/>
 
 
@@ -202,6 +207,7 @@
                     android:layout_marginLeft="5dp"
                     android:clickable="true"
                     android:editable="false"
+                    android:focusable="false"
                     android:hint="@string/searchTime1"/>
 
                 <TextView
@@ -219,6 +225,7 @@
                     android:layout_marginLeft="5dp"
                     android:clickable="true"
                     android:editable="false"
+                    android:focusable="false"
                     android:hint="@string/searchTime2"/>
 
 

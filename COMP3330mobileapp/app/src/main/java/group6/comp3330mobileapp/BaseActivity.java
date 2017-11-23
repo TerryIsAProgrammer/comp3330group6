@@ -1,5 +1,6 @@
 package group6.comp3330mobileapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * Created by Crystal on 17/11/2017.
@@ -32,6 +34,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
         if (mToggle.onOptionsItemSelected(item))
         {
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             return true;
         }
 
