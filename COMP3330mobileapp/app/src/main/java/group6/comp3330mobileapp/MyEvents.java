@@ -80,7 +80,7 @@ public class MyEvents extends BaseActivity {
 
             newE.setVisibility(View.GONE);
 
-            myRef.child("participates").addValueEventListener(new ValueEventListener(){
+            myRef.child("participates").addListenerForSingleValueEvent(new ValueEventListener(){
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +95,7 @@ public class MyEvents extends BaseActivity {
                         }
                     }
 
-                    myRef.child("events").addValueEventListener(new ValueEventListener(){
+                    myRef.child("events").addListenerForSingleValueEvent(new ValueEventListener(){
 
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -178,7 +178,7 @@ public class MyEvents extends BaseActivity {
 
         } else if (userIdentity.equals("A")){
 
-            myRef.child("events").addValueEventListener(new ValueEventListener(){
+            myRef.child("events").addListenerForSingleValueEvent(new ValueEventListener(){
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -231,7 +231,7 @@ public class MyEvents extends BaseActivity {
                             Intent intent = new Intent(MyEvents.this,ViewEventAsso.class);
                             intent.putExtra("eventID",eventID);
                             startActivity(intent);
-                            finish();
+                            //finish();
                         }
                     });
 
@@ -244,7 +244,7 @@ public class MyEvents extends BaseActivity {
                             Intent intent = new Intent(MyEvents.this,ViewEventAsso.class);
                             intent.putExtra("eventID",eventID);
                             startActivity(intent);
-                            finish();
+                            //finish();
                         }
                     });
                 }

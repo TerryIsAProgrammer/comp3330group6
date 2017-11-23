@@ -44,9 +44,13 @@ public class CommentAdapter extends ArrayAdapter<CommentItem> {
         CommentHolder holder = null;
 
         if(convertView == null){
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+            //LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 
-            convertView = inflater.inflate(layoutResourceID,parent,false);
+            //convertView = inflater.inflate(layoutResourceID,parent,false);
+
+            LayoutInflater vi;
+            vi = LayoutInflater.from(getContext());
+            convertView = vi.inflate(R.layout.comment_list_row, null);
 
             holder = new CommentHolder();
             holder.userName = (TextView) convertView.findViewById(R.id.userName);

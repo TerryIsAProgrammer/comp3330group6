@@ -36,7 +36,7 @@ public class CommentList extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.commentListview);
         listView.setAdapter(adapter);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

@@ -2,6 +2,9 @@ package group6.comp3330mobileapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class EditEventAsso extends AppCompatActivity {
+public class EditEventAsso extends BaseActivity {
 
     ImageView posterA;
     TextView viewA;
@@ -50,7 +53,7 @@ public class EditEventAsso extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
     DatabaseReference testRef = myRef.child("events");
-    String key = "005";
+    String key;// = "005";
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     String[] districts = {"Select a District",
@@ -67,6 +70,16 @@ public class EditEventAsso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event_asso);
+
+        Intent intent = getIntent();
+        key = intent.getStringExtra("eventID");
+
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         posterA = (ImageView) findViewById(R.id.posterA);
         viewA = (TextView) findViewById(R.id.view);
@@ -127,7 +140,7 @@ public class EditEventAsso extends AppCompatActivity {
         });
 
         //for loading event inforamtion
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -230,6 +243,8 @@ public class EditEventAsso extends AppCompatActivity {
                                 testRef.child(eventID).setValue(info);
 
                                 Toast.makeText(EditEventAsso.this,"Updated",Toast.LENGTH_SHORT).show();
+
+                                finish();
                             }
 
                             @Override
