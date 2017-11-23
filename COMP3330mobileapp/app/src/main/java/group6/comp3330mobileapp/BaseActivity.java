@@ -60,35 +60,55 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         switch (item.getItemId()) {
 
             case R.id.nav_main:
-                Intent myIntent_main = new Intent(this,HomePage.class);
-                myIntent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(myIntent_main);
-                finish();
+                if (this instanceof HomePage){
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent myIntent_main = new Intent(this, HomePage.class);
+                    myIntent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(myIntent_main);
+                    finish();
+                }
                 break;
             case R.id.nav_search:
-                Intent myIntent_search = new Intent(this,Search.class);
-                startActivity(myIntent_search);
+                if (this instanceof Search) {
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent myIntent_search = new Intent(this, Search.class);
+                    startActivity(myIntent_search);
+                }
                 //finish();
                 break;
             case R.id.nav_profile:
-                Intent myIntent_profile = null;
-                if (userIdentity.equals("S")){
-                    myIntent_profile = new Intent(this,ProfileInd.class);
-                } else if (userIdentity.equals("A")){
-                    myIntent_profile = new Intent(this,ProfileAsso.class);
+                if (this instanceof ProfileAsso ||this instanceof ProfileInd) {
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent myIntent_profile = null;
+                    if (userIdentity.equals("S")) {
+                        myIntent_profile = new Intent(this, ProfileInd.class);
+                    } else if (userIdentity.equals("A")) {
+                        myIntent_profile = new Intent(this, ProfileAsso.class);
+                    }
+                    startActivity(myIntent_profile);
+                    //finish();
                 }
-                startActivity(myIntent_profile);
-                //finish();
                 break;
             case R.id.nav_my_events:
-                Intent myIntent_viewEvent = new Intent(this,MyEvents.class);
-                startActivity(myIntent_viewEvent);
-                //finish();
+                if (this instanceof MyEvents) {
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent myIntent_viewEvent = new Intent(this, MyEvents.class);
+                    startActivity(myIntent_viewEvent);
+                    //finish();
+                }
                 break;
             case R.id.nav_chat:
-                Intent myIntent_chat = new Intent(this,ChatRoom.class);
-                startActivity(myIntent_chat);
-                //finish();
+                if (this instanceof ChatRoom) {
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent myIntent_chat = new Intent(this, ChatRoom.class);
+                    startActivity(myIntent_chat);
+                    //finish();
+                }
                 break;
             case R.id.nav_log_out:
                 Intent myIntent_logout = new Intent(this,MainActivity.class);

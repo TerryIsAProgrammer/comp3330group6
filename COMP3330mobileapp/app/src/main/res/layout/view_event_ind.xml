@@ -18,12 +18,16 @@
             android:id="@+id/posterI"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@drawable/balloons" />
+            android:src="@drawable/balloons"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -42,7 +46,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -61,7 +68,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -80,7 +90,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -99,7 +112,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -126,7 +142,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -157,7 +176,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                android:text="Add Calendar" />
+                android:text="Add Calendar"
+                style="@style/Widget.AppCompat.Button.Colored"/>
 
         </LinearLayout>
 
@@ -167,13 +187,15 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buttonJoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Join Now!" />
+                android:text="Join Now!"
+                style="@style/Widget.AppCompat.Button.Colored"/>
 
         </LinearLayout>
 

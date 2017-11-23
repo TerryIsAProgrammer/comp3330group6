@@ -163,8 +163,7 @@ public class ViewEventInd extends BaseActivity {
                         int month = Integer.parseInt(date.substring(0,2));
                         int day = Integer.parseInt(date.substring(3,5));
                         int year = Integer.parseInt(date.substring(6,8));
-
-
+                        
                         Log.v("E-Value", "month is: " + month);
                         Log.v("E-Value", "day is: " + day);
                         Log.v("E-Value", "year is: " + year);

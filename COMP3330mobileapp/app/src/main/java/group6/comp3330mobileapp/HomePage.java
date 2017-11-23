@@ -248,4 +248,5 @@ public class HomePage extends BaseActivity{
             }
         });
     }
+
 }
