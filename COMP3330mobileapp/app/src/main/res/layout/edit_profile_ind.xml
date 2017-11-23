@@ -20,37 +20,12 @@
             android:layout_height="150dp" />
 
         <TextView
-            android:id="@+id/userName"
+            android:id="@+id/userNameId"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:hint="Username" />
-
-        <TextView
-            android:id="@+id/userId"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="User ID" />
-
-        <TextView
-            android:id="@+id/identity"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="Identity" />
-
-        <TextView
-            android:id="@+id/biography"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:visibility="invisible"
-            android:hint="Biography" />
+            android:hint="Username and User ID" />
 
         <LinearLayout
             android:paddingLeft="12dp"
@@ -71,27 +46,6 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:hint="Name" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:paddingLeft="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/gender"
-                android:tint="@color/colorPrimary" />
-
-            <TextView
-                android:layout_marginLeft="15dp"
-                android:id="@+id/gender"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:hint="Gender" />
         </LinearLayout>
 
         <LinearLayout
@@ -202,22 +156,6 @@
                 android:hint="Email"/>
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
-            android:hint="password" />
-
-        <TextView
-            android:id="@+id/iconId"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:visibility="invisible"
-            android:hint="iconID" />
 
         <Button
             android:id="@+id/save"

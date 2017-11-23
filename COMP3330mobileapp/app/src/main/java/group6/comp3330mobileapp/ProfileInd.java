@@ -26,7 +26,6 @@ public class ProfileInd extends BaseActivity {
     ImageView icon;
     TextView userNameId;
     TextView name;
-    TextView gender;
     TextView university;
     TextView degree;
     TextView uid;
@@ -59,7 +58,6 @@ public class ProfileInd extends BaseActivity {
         icon = (ImageView) findViewById(R.id.icon);
         userNameId = (TextView) findViewById(R.id.userNameId);
         name = (TextView) findViewById(R.id.name);
-        gender = (TextView) findViewById(R.id.gender);
         university = (TextView) findViewById(R.id.university);
         degree = (TextView) findViewById(R.id.degree);
         uid = (TextView) findViewById(R.id.uid);
@@ -70,7 +68,7 @@ public class ProfileInd extends BaseActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),EditProfileAsso.class);
+                Intent intent = new Intent(getApplicationContext(),EditProfileInd.class);
                 startActivity(intent);
             }
         });
@@ -82,15 +80,10 @@ public class ProfileInd extends BaseActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                //String value = dataSnapshot.getValue(String.class);
-                //Log.d(TAG, "Value is: " + value);
-
-
                 //String iconI = dataSnapshot.child("users").child(key).child("icon").getValue().toString();
                 String userName = dataSnapshot.child("users").child(key).child("username").getValue().toString();
                 String userId = dataSnapshot.child("users").child(key).child("userID").getValue().toString();
                 String nameI = dataSnapshot.child("users").child(key).child("name").getValue().toString();
-                //String genderI = dataSnapshot.child("users").child(key).child("gender").getValue().toString();
                 String universityI = dataSnapshot.child("users").child(key).child("university").getValue().toString();
                 String degreeI = dataSnapshot.child("users").child(key).child("degree").getValue().toString();
                 String uidI = dataSnapshot.child("users").child(key).child("uid").getValue().toString();
@@ -105,7 +98,6 @@ public class ProfileInd extends BaseActivity {
                 Log.v("E-Value", "userName is: " + userName);
                 Log.v("E-Value", "userId is: " + userId);
                 Log.v("E-Value", "name is: " + nameI);
-                //Log.v("E-Value", "gender is: " + genderI);
                 Log.v("E-Value", "university is: " + universityI);
                 Log.v("E-Value", "degree is: " + degreeI);
                 Log.v("E-Value", "uid is: " + uidI);
@@ -114,7 +106,6 @@ public class ProfileInd extends BaseActivity {
 
                 userNameId.setText("Username : " + userName + "\n" + "User Id : " + userId);
                 name.setText(nameI);
-                //gender.setText(genderI);
                 university.setText(universityI);
                 degree.setText(degreeI);
                 uid.setText(uidI);

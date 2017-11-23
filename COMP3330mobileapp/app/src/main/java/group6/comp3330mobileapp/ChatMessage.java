@@ -42,7 +42,5 @@ public class ChatMessage {
         return messageTime;
     }
 
-    public void setMessageTime(long messageTime) {
-        this.messageTime = messageTime;
-    }
+    public void setMessageTime(long messageTime) {this.messageTime = messageTime;}
 }
