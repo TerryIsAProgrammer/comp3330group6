@@ -29,7 +29,9 @@ public class RegisterStudent extends AppCompatActivity {
     Spinner universitySpinner;
     EditText uid;
     EditText email;
-    EditText assoname;
+    EditText name;
+    EditText phone;
+    EditText degree;
     String[] university = {"Select a University", "The University of Hong Kong",
             "The Chinese University of Hong Kong", "The Hong Kong University of Science and Technology",
             "City University of Hong Kong", "The Hong Kong Polytechnic University",
@@ -56,7 +58,11 @@ public class RegisterStudent extends AppCompatActivity {
         uid = (EditText)findViewById(R.id.editText4);
         email = (EditText)findViewById(R.id.editText5);
 
-        assoname = findViewById(R.id.editTextAssoName);
+        name = findViewById(R.id.name);
+        //name.setVisibility(View.GONE);
+
+        degree = findViewById(R.id.degree);
+        phone = findViewById(R.id.phone);
 
         ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, university);
         universitySpinner.setAdapter(adapterUni);
@@ -83,16 +89,19 @@ public class RegisterStudent extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String usernameString = username.getText().toString();
                         String passwordString = password.getText().toString();
-                        int thisuid = Integer.valueOf(uid.getText().toString());
+                        long thisuid = Integer.valueOf(uid.getText().toString()).longValue();
                         String emailString = email.getText().toString();
                         String universityString = university[universitySpinner.getSelectedItemPosition()];
+
+                        String degreeString = degree.getText().toString();
+                        String phoneString  = phone.getText().toString();
 
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
                             String userIDString = data.child("userID").getValue().toString(); //retrieve from old user id
                             int userIDInt = Integer.valueOf(userIDString)+1; // new user id in integer
                             String userIDString_new = String.format("%03d",userIDInt); //reformat new user id
 
-                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString, thisuid,emailString,"S",userIDString_new);
+                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString, thisuid,emailString,"S",userIDString_new,degreeString,phoneString);
                             testRef.child(userIDString_new).setValue(createNewUser);
 
                             Toast.makeText(RegisterStudent.this, "Registration Succeed, Please Login In",
@@ -124,14 +133,16 @@ public class RegisterStudent extends AppCompatActivity {
         private String username;
         private String password;
         private String email;
-        private int uid;
+        private long uid;
         private String userID;
         private String university;
         private String identity;
+        private String degree;
+        private String phone;
 
         public UserInfo(){}
 
-        public UserInfo (String username, String password, String university, int uid, String email ,String identity, String userID){
+        public UserInfo (String username, String password, String university, long uid, String email ,String identity, String userID,String degree,String phone){
             this.username = username;
             this.password = password;
             this.email = email;
@@ -139,15 +150,19 @@ public class RegisterStudent extends AppCompatActivity {
             this.university = university;
             this.identity = identity;
             this.userID = userID;
+            this.degree = degree;
+            this.phone = phone;
         }
 
         public String getUsername(){return username;}
         public String getPassword(){return password;}
         public String getEmail(){return email;}
-        public int getUid(){return uid;}
+        public long getUid(){return uid;}
         public String getUniversity(){return university;}
         public String getIdentity(){return identity;}
         public String getuserID(){return userID;}
+        public String getDegree(){return degree;}
+        public String getPhone(){return phone;}
     }
 
 }

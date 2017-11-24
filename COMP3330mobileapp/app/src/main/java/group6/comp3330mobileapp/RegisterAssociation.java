@@ -29,6 +29,9 @@ public class RegisterAssociation extends AppCompatActivity {
     Spinner universitySpinner;
     EditText uid;
     EditText email;
+    EditText assocname;
+    EditText phone;
+    EditText degree;
     String[] university = {"Select a University", "The University of Hong Kong",
             "The Chinese University of Hong Kong", "The Hong Kong University of Science and Technology",
             "City University of Hong Kong", "The Hong Kong Polytechnic University",
@@ -54,6 +57,13 @@ public class RegisterAssociation extends AppCompatActivity {
         universitySpinner = (Spinner) findViewById(R.id.editText3);
         uid = (EditText)findViewById(R.id.editText4);
         email = (EditText)findViewById(R.id.editText5);
+        assocname = findViewById(R.id.name);
+
+        degree = findViewById(R.id.degree);
+        phone = findViewById(R.id.phone);
+
+        degree.setVisibility(View.GONE);
+        phone.setVisibility(View.GONE);
 
         ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, university);
         universitySpinner.setAdapter(adapterUni);
@@ -85,13 +95,14 @@ public class RegisterAssociation extends AppCompatActivity {
                         //int thisuid = Integer.valueOf(uid.getText().toString());
                         String emailString = email.getText().toString();
                         String universityString = university[universitySpinner.getSelectedItemPosition()];
+                        String assocnameString = assocname.getText().toString();
 
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
                             String userIDString = data.child("userID").getValue().toString(); //retrieve from old user id
                             int userIDInt = Integer.valueOf(userIDString)+1; // new user id in integer
                             String userIDString_new = String.format("%03d",userIDInt); //reformat new user id
 
-                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString,emailString,"S",userIDString_new);
+                            UserInfo createNewUser= new UserInfo(usernameString,passwordString,universityString,emailString,"A",userIDString_new,assocnameString);
                             testRef.child(userIDString_new).setValue(createNewUser);
 
                             Toast.makeText(RegisterAssociation.this, "Registration Succeed, Please Login In",
@@ -127,10 +138,11 @@ public class RegisterAssociation extends AppCompatActivity {
         private String userID;
         private String university;
         private String identity;
+        private String name;
 
         public UserInfo(){}
 
-        public UserInfo (String username, String password, String university,String email ,String identity, String userID){
+        public UserInfo (String username, String password, String university,String email ,String identity, String userID, String assocname){
             this.username = username;
             this.password = password;
             this.email = email;
@@ -138,6 +150,7 @@ public class RegisterAssociation extends AppCompatActivity {
             this.university = university;
             this.identity = identity;
             this.userID = userID;
+            this.name = assocname;
         }
 
         public String getUsername(){return username;}
@@ -147,6 +160,7 @@ public class RegisterAssociation extends AppCompatActivity {
         public String getUniversity(){return university;}
         public String getIdentity(){return identity;}
         public String getuserID(){return userID;}
+        public String getAssoname(){return name;}
     }
 
 }

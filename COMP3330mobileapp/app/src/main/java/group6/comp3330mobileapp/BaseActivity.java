@@ -2,6 +2,7 @@ package group6.comp3330mobileapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,8 @@ import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by Crystal on 17/11/2017.
@@ -64,7 +67,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
             case R.id.nav_main:
                 if (this instanceof HomePage){
-                    mDrawerLayout.closeDrawers();
+                    Intent intent = getIntent();
+                    Bundle extras = intent.getExtras();
+                    if (extras != null) {
+                        if (extras.containsKey("searchResults")) {
+                            Intent myIntent_main = new Intent(this, HomePage.class);
+                            myIntent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(myIntent_main);
+                            finish();
+                        }
+                    }else {
+                        mDrawerLayout.closeDrawers();
+                    }
                 }else {
                     Intent myIntent_main = new Intent(this, HomePage.class);
                     myIntent_main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
