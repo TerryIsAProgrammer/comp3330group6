@@ -141,7 +141,7 @@ public class HomePage extends BaseActivity {
 
     public void setListView(final String sortType, final ArrayList<String> eventArr){
 
-        mDatabase.child("events").addValueEventListener(new ValueEventListener(){
+        mDatabase.child("events").addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

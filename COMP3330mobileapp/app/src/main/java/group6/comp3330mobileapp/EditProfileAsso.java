@@ -67,7 +67,7 @@ public class EditProfileAsso extends BaseActivity {
         save = (Button) findViewById(R.id.save);
 
         //for loading event inforamtion
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -120,6 +120,8 @@ public class EditProfileAsso extends BaseActivity {
                 myRef.child("users").child(key).child("email").setValue(emailEdit.getText().toString());
 
                 Toast.makeText(EditProfileAsso.this,"Updated",Toast.LENGTH_SHORT).show();
+
+                finish();
 
             }
         });

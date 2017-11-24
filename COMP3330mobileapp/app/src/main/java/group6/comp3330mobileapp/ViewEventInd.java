@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewEventInd extends BaseActivity {
 
@@ -36,6 +41,11 @@ public class ViewEventInd extends BaseActivity {
 
     Button buttonJoin;
     Button addCalendar;
+    Button addComment;
+
+    CommentAdapter adapter;
+    ListView listView;
+    List<CommentItem> lstComment;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -54,8 +64,8 @@ public class ViewEventInd extends BaseActivity {
         key = intent.getStringExtra("eventID");
 
         setNavigationViewListener();
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -71,25 +81,49 @@ public class ViewEventInd extends BaseActivity {
 
         buttonJoin = findViewById(R.id.buttonJoin);
         addCalendar = findViewById(R.id.addCalendar);
+        addComment = findViewById(R.id.addComment);
+
+        lstComment = new ArrayList<>();
+        listView = (ListView) findViewById(R.id.commentListview);
+        listView.setAdapter(adapter);
 
         //Check button join status
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                GlobalVariable gv = (GlobalVariable) getApplicationContext();
                 int userKey = gv.getUserID();
-                String userKeyStringString = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+                String userKeyStringString = String.format(java.util.Locale.getDefault(), "%03d", userKey);
                 if (dataSnapshot.child("participates").child(key).hasChild(userKeyStringString)) {
                     // run some code
                     //myRef.child("participates").child(key).child(userKeyStringString).setValue(true);
                     //Toast.makeText(ViewEventInd.this,"Activity Joined!" , Toast.LENGTH_SHORT).show();
-                    buttonJoin.setText("Not Join");
+                    buttonJoin.setText("Not\nJoin");
                     addCalendar.setVisibility(View.VISIBLE);
-                }else{
-                    buttonJoin.setText("Join Now!");
-                    addCalendar.setVisibility(View.INVISIBLE);
+                } else {
+                    buttonJoin.setText("Join\nNow!");
+                    addCalendar.setVisibility(View.GONE);
                     //Toast.makeText(ViewEventInd.this,"Activity Not Join!" , Toast.LENGTH_SHORT).show();
 
+                }
+
+                for(DataSnapshot user1 : dataSnapshot.child("comment").child(key).getChildren()){
+
+                    Log.v("E-Value", "user1 is: " + user1);
+
+                    String username = user1.child("username").getValue().toString();
+                    String comment = user1.child("comment").getValue().toString();
+
+                    lstComment.add(new CommentItem(username,comment));
+
+                }
+
+                Log.v("E-Value", "size is: " + lstComment.size());
+                if(lstComment.size()>0){
+                    adapter = new CommentAdapter(getApplicationContext(), R.layout.comment_list_row, lstComment);
+                    listView.setAdapter((ListAdapter) adapter);
+                }else{
+                    //Toast.makeText(getApplicationContext(),"No data", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -100,37 +134,37 @@ public class ViewEventInd extends BaseActivity {
         });
 
 
-        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+        GlobalVariable gv = (GlobalVariable) getApplicationContext();
         String userIdentity = gv.getIdentity();
-        if (userIdentity.equals("A")){
+        if (userIdentity.equals("A")) {
             buttonJoin.setVisibility(View.GONE);
             addCalendar.setVisibility(View.GONE);
         }
 
-        buttonJoin.setOnClickListener(new View.OnClickListener(){
+        buttonJoin.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+                        GlobalVariable gv = (GlobalVariable) getApplicationContext();
                         int userKey = gv.getUserID();
-                        String userKeyStringString = String.format(java.util.Locale.getDefault(),"%03d",userKey);
+                        String userKeyStringString = String.format(java.util.Locale.getDefault(), "%03d", userKey);
                         if (!dataSnapshot.child("participates").child(key).hasChild(userKeyStringString)) {
                             // run some code
                             myRef.child("participates").child(key).child(userKeyStringString).setValue(true);
-                            Toast.makeText(ViewEventInd.this,"Activity Joined!" , Toast.LENGTH_SHORT).show();
-                            buttonJoin.setText("Not Join");
+                            Toast.makeText(ViewEventInd.this, "Activity Joined!", Toast.LENGTH_SHORT).show();
+                            buttonJoin.setText("Not\nJoin");
                             addCalendar.setVisibility(View.VISIBLE);
                             Log.v("E-Value", "exist is: " + userKeyStringString);
-                        }else{
+                        } else {
                             //myRef.child("participates").child(key).child(userKeyStringString).setValue(false);
                             myRef.child("participates").child(key).child(userKeyStringString).removeValue();
-                            buttonJoin.setText("Join Now!");
-                            addCalendar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(ViewEventInd.this,"Activity Not Join!" , Toast.LENGTH_SHORT).show();
+                            buttonJoin.setText("Join\nNow!");
+                            addCalendar.setVisibility(View.GONE);
+                            Toast.makeText(ViewEventInd.this, "Activity Not Join!", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -144,9 +178,9 @@ public class ViewEventInd extends BaseActivity {
             }
         });
 
-        addCalendar.setOnClickListener(new View.OnClickListener(){
+        addCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -160,22 +194,22 @@ public class ViewEventInd extends BaseActivity {
                         Log.v("E-Value", "date is: " + date);
                         Log.v("E-Value", "time is: " + time);
 
-                        int month = Integer.parseInt(date.substring(0,2));
-                        int day = Integer.parseInt(date.substring(3,5));
-                        int year = Integer.parseInt(date.substring(6,8));
-                        
+                        int month = Integer.parseInt(date.substring(0, 2));
+                        int day = Integer.parseInt(date.substring(3, 5));
+                        int year = Integer.parseInt(date.substring(6, 8));
+
                         Log.v("E-Value", "month is: " + month);
                         Log.v("E-Value", "day is: " + day);
                         Log.v("E-Value", "year is: " + year);
 
-                        int hour = Integer.parseInt(time.substring( 0, time.indexOf(":")));
+                        int hour = Integer.parseInt(time.substring(0, time.indexOf(":")));
                         int min = Integer.parseInt(time.substring(time.indexOf(":") + 1));
                         Log.v("E-Value", "hour is: " + hour);
                         Log.v("E-Value", "min is: " + min);
 
                         Calendar cal = Calendar.getInstance();
 
-                        cal.set(year+2000, month-1, day, hour, min);
+                        cal.set(year + 2000, month - 1, day, hour, min);
                         long beginTime = cal.getTimeInMillis();
 
                         Intent intent = new Intent(Intent.ACTION_EDIT);
@@ -227,22 +261,22 @@ public class ViewEventInd extends BaseActivity {
                 viewContactPhoneI.setText(contactPhone);
                 viewDescriptionI.setText(description);
 
-                StorageReference pathReference = mStorageRef.child("eventPoster/"+name);
+                StorageReference pathReference = mStorageRef.child("eventPoster/" + name);
                 Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(posterI);
 
 
-                String timestamp = (String)dataSnapshot.child("events").child(key).child("datetime").getValue();
+                String timestamp = (String) dataSnapshot.child("events").child(key).child("datetime").getValue();
                 long tsint = Long.valueOf(timestamp).longValue();
 
                 long millis = System.currentTimeMillis();
 
-                if (tsint < millis){
+                if (tsint < millis) {
                     buttonJoin.setVisibility(View.GONE);
                     addCalendar.setVisibility(View.GONE);
                 }
 
-                long views = (long)dataSnapshot.child("events").child(key).child("view").getValue();
-                myRef.child("events").child(key).child("view").setValue(views+1);
+                long views = (long) dataSnapshot.child("events").child(key).child("view").getValue();
+                myRef.child("events").child(key).child("view").setValue(views + 1);
             }
 
 
@@ -256,7 +290,14 @@ public class ViewEventInd extends BaseActivity {
         //for loading poster
         //Glide.with(this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(posterI);
 
-
+        addComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Comment.class);
+                intent.putExtra("eventID", key);
+                startActivity(intent);
+            }
+        });
     }
 
 

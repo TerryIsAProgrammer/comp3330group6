@@ -74,7 +74,7 @@ public class ProfileInd extends BaseActivity {
         });
 
         //for loading event inforamtion
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

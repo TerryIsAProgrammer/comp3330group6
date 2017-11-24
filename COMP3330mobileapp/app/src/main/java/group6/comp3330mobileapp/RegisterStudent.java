@@ -29,6 +29,7 @@ public class RegisterStudent extends AppCompatActivity {
     Spinner universitySpinner;
     EditText uid;
     EditText email;
+    EditText assoname;
     String[] university = {"Select a University", "The University of Hong Kong",
             "The Chinese University of Hong Kong", "The Hong Kong University of Science and Technology",
             "City University of Hong Kong", "The Hong Kong Polytechnic University",
@@ -54,6 +55,8 @@ public class RegisterStudent extends AppCompatActivity {
         universitySpinner = (Spinner) findViewById(R.id.editText3);
         uid = (EditText)findViewById(R.id.editText4);
         email = (EditText)findViewById(R.id.editText5);
+
+        assoname = findViewById(R.id.editTextAssoName);
 
         ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, university);
         universitySpinner.setAdapter(adapterUni);
