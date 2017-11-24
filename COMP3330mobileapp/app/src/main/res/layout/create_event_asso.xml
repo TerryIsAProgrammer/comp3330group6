@@ -179,7 +179,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:spinnerMode="dropdown"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinnerUni"

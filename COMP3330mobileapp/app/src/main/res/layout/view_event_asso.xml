@@ -64,7 +64,8 @@ tools:context=".Home">
             android:layout_marginRight="40dp"
             android:textSize="20sp"
             android:text="Edit Event"
-            android:id="@+id/editEvent"/>
+            android:id="@+id/editEvent"
+            style="@style/Widget.AppCompat.Button.Colored"/>
     </LinearLayout>
 
 
