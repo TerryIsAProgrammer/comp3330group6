@@ -73,6 +73,7 @@ public class HomePage extends BaseActivity {
         title.setText("Welcome back, "  + thisUserName);
         title.findViewById(R.id.TitleView);
 
+
         recentbtn = findViewById(R.id.RecentButton);
         hotbtn = findViewById(R.id.HotEventsButton);
         uniBtn = findViewById(R.id.UEventsButton);

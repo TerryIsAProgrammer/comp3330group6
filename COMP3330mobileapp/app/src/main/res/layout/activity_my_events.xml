@@ -26,6 +26,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 style="@style/Widget.AppCompat.Button.Colored"/>
 
             <LinearLayout
@@ -33,18 +34,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="3dp"
                     android:text="Future Events"
-                    android:textSize="30dp"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginBottom="5dp"/>
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:id="@+id/futureEvents"/>
+                    android:id="@+id/futureEvents"
+                    android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
 
@@ -53,13 +67,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="3dp"
                     android:text="Past Events"
-                    android:textSize="30dp"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"/>
 
                 <ListView
                     android:layout_width="match_parent"
