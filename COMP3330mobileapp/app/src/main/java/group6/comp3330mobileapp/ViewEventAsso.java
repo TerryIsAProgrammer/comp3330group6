@@ -6,7 +6,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewEventAsso extends BaseActivity {
 
@@ -32,6 +39,15 @@ public class ViewEventAsso extends BaseActivity {
     TextView viewContactNameA;
     TextView viewContactPhoneA;
     TextView viewDescriptionA;
+
+    Button editEvent;
+
+    long regCount = 0;
+    long commentCount = 0;
+
+    CommentAdapter adapter;
+    ListView listView;
+    List<CommentItem> lstComment;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
@@ -67,9 +83,14 @@ public class ViewEventAsso extends BaseActivity {
         viewContactPhoneA = (TextView) findViewById(R.id.viewContactPhoneA);
         viewDescriptionA = (TextView) findViewById(R.id.viewDescriptionA);
 
+        editEvent = findViewById(R.id.editEvent);
+
+        lstComment = new ArrayList<>();
+        listView = (ListView) findViewById(R.id.commentListview);
+        listView.setAdapter(adapter);
 
         //for loading event inforamtion
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -77,6 +98,21 @@ public class ViewEventAsso extends BaseActivity {
 
                 //String value = dataSnapshot.getValue(String.class);
                 //Log.d(TAG, "Value is: " + value);
+
+                /*myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        regCount = dataSnapshot.child("participates").child(key).getChildrenCount();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });*/
+
+                regCount = dataSnapshot.child("participates").child(key).getChildrenCount();
+                commentCount = dataSnapshot.child("comment").child(key).getChildrenCount();
 
 
                 String name = dataSnapshot.child("events").child(key).child("event_name").getValue().toString();
@@ -97,8 +133,8 @@ public class ViewEventAsso extends BaseActivity {
                 Log.v("E-Value", "description is: " + description);
 
                 view.setText("View"+"\n"+viewCount);
-                registration.setText("Registration"+"\n"+"20");
-                comment.setText("Comment"+"\n"+"5");
+                registration.setText("Registration"+"\n"+regCount);
+                comment.setText("Comment"+"\n"+commentCount);
                 viewEventNameA.setText(name);
                 viewDateA.setText(date);
                 viewTimeA.setText(time);
@@ -110,6 +146,25 @@ public class ViewEventAsso extends BaseActivity {
                 StorageReference pathReference = mStorageRef.child("eventPoster/"+name);
                 //for loading poster
                 Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(posterA);
+
+                for(DataSnapshot user1 : dataSnapshot.child("comment").child(key).getChildren()){
+
+                    Log.v("E-Value", "user1 is: " + user1);
+
+                    String username = user1.child("username").getValue().toString();
+                    String comment = user1.child("comment").getValue().toString();
+
+                    lstComment.add(new CommentItem(username,comment));
+
+                }
+
+                Log.v("E-Value", "size is: " + lstComment.size());
+                if(lstComment.size()>0){
+                    adapter = new CommentAdapter(getApplicationContext(), R.layout.comment_list_row, lstComment);
+                    listView.setAdapter((ListAdapter) adapter);
+                }else{
+                    //Toast.makeText(getApplicationContext(),"No data", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -123,5 +178,13 @@ public class ViewEventAsso extends BaseActivity {
         //Glide.with(this /* context */).using(new FirebaseImageLoader()).load(pathReference).into(posterA);
 
 
+        editEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),EditEventAsso.class);
+                intent.putExtra("eventID",key);
+                startActivity(intent);
+            }
+        });
     }
 }

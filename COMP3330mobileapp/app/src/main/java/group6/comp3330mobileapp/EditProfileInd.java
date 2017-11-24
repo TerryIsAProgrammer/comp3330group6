@@ -68,7 +68,7 @@ public class EditProfileInd extends BaseActivity {
 
 
         //for loading event inforamtion
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -125,6 +125,8 @@ public class EditProfileInd extends BaseActivity {
                 myRef.child("users").child(key).child("tel_no").setValue(phoneEdit.getText().toString());
                 myRef.child("users").child(key).child("email").setValue(emailEdit.getText().toString());
                 Toast.makeText(EditProfileInd.this,"Updated",Toast.LENGTH_SHORT).show();
+
+                finish();
 
             }
         });

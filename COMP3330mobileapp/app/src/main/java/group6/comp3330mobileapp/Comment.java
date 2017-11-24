@@ -1,5 +1,8 @@
 package group6.comp3330mobileapp;
 
+import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,14 +35,28 @@ public class Comment extends BaseActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
     DatabaseReference testRef = myRef.child("comment");
-    String userID = "003";
-    String eventKey = "004";
+    String userID;// = "003";
+    String eventKey;// = "004";
     StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment);
+
+        setNavigationViewListener();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        GlobalVariable gv = (GlobalVariable) getApplicationContext();
+        int userKey = gv.getUserID();
+        userID = String.format(java.util.Locale.getDefault(), "%03d", userKey);
+
+        Intent intent = getIntent();
+        eventKey = (String) intent.getStringExtra("eventID");
 
         poster = (ImageView) findViewById(R.id.poster);
         userName = (TextView) findViewById(R.id.userName);
@@ -66,30 +83,32 @@ public class Comment extends BaseActivity {
                 userName.setText(userNameC);
 
                 //StorageReference pathReference = mStorageRef.child("icon/"+iconI);
-                StorageReference pathReference = mStorageRef.child("eventPoster/"+eventNameC);
+                StorageReference pathReference = mStorageRef.child("eventPoster/" + eventNameC);
                 //for loading poster
                 Glide.with(getApplicationContext()).using(new FirebaseImageLoader()).load(pathReference).into(poster);
 
-                post.setOnClickListener(new View.OnClickListener(){
+                post.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view){
+                    public void onClick(View view) {
 
-                        String eventIDC = eventID.getText().toString();
-                        String eventNameC = eventName.getText().toString();
-                        String userNameC = userName.getText().toString();
-                        String commentC = comment.getText().toString();
+                    String eventIDC = eventID.getText().toString();
+                    String eventNameC = eventName.getText().toString();
+                    String userNameC = userName.getText().toString();
+                    String commentC = comment.getText().toString();
 
-                        Log.v("E-Value", "iconI is: " + eventIDC);
-                        Log.v("E-Value", "iconI is: " + eventNameC);
-                        Log.v("E-Value", "userNameI is: " + userID);
-                        Log.v("E-Value", "userNameI is: " + userNameC);
-                        Log.v("E-Value", "userIdI is: " + commentC);
+                    Log.v("E-Value", "iconI is: " + eventIDC);
+                    Log.v("E-Value", "iconI is: " + eventNameC);
+                    Log.v("E-Value", "userNameI is: " + userID);
+                    Log.v("E-Value", "userNameI is: " + userNameC);
+                    Log.v("E-Value", "userIdI is: " + commentC);
 
-                        Comment.EventComment comment = new Comment.EventComment(eventIDC, eventNameC, userID, userNameC, commentC);
+                    Comment.EventComment comment = new Comment.EventComment(eventIDC, eventNameC, userID, userNameC, commentC);
 
-                        testRef.child(eventKey).child(userID).setValue(comment);
+                    testRef.child(eventKey).child(userID).setValue(comment);
 
-                        Toast.makeText(Comment.this,"Posted",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Comment.this, "Posted", Toast.LENGTH_SHORT).show();
+
+                    finish();
 
                     }
                 });
@@ -104,7 +123,7 @@ public class Comment extends BaseActivity {
 
     }
 
-    public class EventComment{
+    public class EventComment {
 
         private String eventID;
         private String event_name;
@@ -112,11 +131,11 @@ public class Comment extends BaseActivity {
         private String username;
         private String comment;
 
-        public EventComment(){
+        public EventComment() {
 
         }
 
-        public EventComment (String eventID, String event_name, String userID, String username, String comment){
+        public EventComment(String eventID, String event_name, String userID, String username, String comment) {
 
             this.eventID = eventID;
             this.event_name = event_name;
@@ -125,11 +144,25 @@ public class Comment extends BaseActivity {
             this.comment = comment;
         }
 
-        public String getEventID(){return eventID;}
-        public String getEvent_name(){return event_name;}
-        public String getUserID(){return userID;}
-        public String getUsername(){return username;}
-        public String getComment(){return comment;}
+        public String getEventID() {
+            return eventID;
+        }
+
+        public String getEvent_name() {
+            return event_name;
+        }
+
+        public String getUserID() {
+            return userID;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getComment() {
+            return comment;
+        }
 
     }
 }
