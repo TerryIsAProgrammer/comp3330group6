@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.facebook.internal.Utility.isNullOrEmpty;
+
 public class ChatRoom extends BaseActivity {
 
     EditText input;
@@ -46,8 +48,17 @@ public class ChatRoom extends BaseActivity {
             @Override
             public void onClick(View view){
 
-            FirebaseDatabase.getInstance().getReference().child("chatRoom").push().setValue(new ChatMessage(input.getText().toString(),username));
-            input.setText(null);
+                String test = input.getText().toString();
+                //Log.d("E-Value","test: "+"\""+test+"\"");
+                if(isNullOrEmpty(test) || input.getText().toString().trim().length() == 0){
+                    //Log.d("E-Value","test: "+"\""+test+"\"" + " " + input.getText().toString().trim().length());
+                    Toast.makeText(ChatRoom.this,"Cannot be empty!",Toast.LENGTH_SHORT).show();
+                }else{
+                    FirebaseDatabase.getInstance().getReference().child("chatRoom").push().setValue(new ChatMessage(input.getText().toString(),username));
+                    input.setText(null);
+
+                }
+
 
             }
         });
