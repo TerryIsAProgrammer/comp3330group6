@@ -31,9 +31,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
         switch (item.getItemId()) {
             case R.id.action_search:
-                Intent myIntent = new Intent(this,Search.class);
-                startActivity(myIntent);
-                //finish();
+                if (this instanceof Search) {
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent myIntent = new Intent(this,Search.class);
+                    startActivity(myIntent);
+                    //finish();
+                }
                 break;
         }
 
